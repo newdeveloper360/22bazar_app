@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView android:elevation="6dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="6dp"
+    android:layout_marginBottom="18dp"
+    app:cardCornerRadius="6dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:paddingVertical="8dp"
+       android:orientation="vertical">
+       <TextView
+           android:id="@+id/tvGameType"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:gravity="center"
+           android:textSize="@dimen/_13sdp"
+           android:textStyle="bold"
+           android:text="Full Sangam"
+           android:textColor="@color/black" />
+       <TextView
+           android:id="@+id/tvGameRate"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:gravity="center"
+           android:textSize="@dimen/_12ssp"
+           android:text="1 RS KA 100 Rs"
+           android:textColor="@color/black" />
+   </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

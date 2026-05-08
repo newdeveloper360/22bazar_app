@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/open_game_graph"
+    app:startDestination="@id/jantriFragment">
+
+    <fragment
+        android:id="@+id/jantriFragment"
+        android:name="com.userplay.bazar22.ui.fragments.open_game.ui.fragment.JantriFragment"
+        android:label="JantriFragment" >
+        <action
+            android:id="@+id/action_jantriFragment_to_submitGameDialogFragment2"
+            app:destination="@id/submitGameDialogFragment2" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/submitGameDialogFragment2"
+        android:name="com.userplay.bazar22.ui.dialogs.SubmitGameDialogFragment"
+        android:label="SubmitGameDialogFragment" >
+
+
+        <argument
+            android:name="sendBody"
+            app:argType="com.userplay.bazar22.models.SendBody" />
+        <argument
+            android:name="totalBids"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <argument
+            android:name="totalPoints"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_submitGameDialogFragment2_to_bidSuccessDialogFragment2"
+            app:destination="@id/bidSuccessDialogFragment2" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <argument
+            android:name="gameType"
+            app:argType="boolean" />
+
+
+    </dialog>
+    <fragment
+        android:id="@+id/crossingNumberFragment"
+        android:name="com.userplay.bazar22.ui.fragments.open_game.ui.fragment.CrossingNumberFragment"
+        android:label="CrossingNumberFragment" >
+        <action
+            android:id="@+id/action_crossingNumberFragment_to_submitGameDialogFragment2"
+            app:destination="@id/submitGameDialogFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/noToNoFragment"
+        android:name="com.userplay.bazar22.ui.fragments.open_game.ui.fragment.NoToNoFragment"
+        android:label="NoToNoFragment" >
+        <action
+            android:id="@+id/action_noToNoFragment_to_submitGameDialogFragment2"
+            app:destination="@id/submitGameDialogFragment2" />
+    </fragment>
+    <dialog
+        android:id="@+id/bidSuccessDialogFragment2"
+        android:name="com.userplay.bazar22.ui.dialogs.BidSuccessDialogFragment"
+        android:label="BidSuccessDialogFragment" />
+    <dialog
+        android:id="@+id/errorDialogFragment3"
+        android:name="com.userplay.bazar22.ui.dialogs.ErrorDialogFragment"
+        android:label="ErrorDialogFragment" /><action android:id="@+id/action_global_errorDialogFragment3" app:destination="@id/errorDialogFragment3"/>
+
+    <!--    <argument-->
+<!--        android:name="sendBody"-->
+<!--        app:argType="com.dev360.m777.models.SendBody" />-->
+<!--    <argument-->
+<!--        android:name="totalBids"-->
+<!--        android:defaultValue="0"-->
+<!--        app:argType="integer" />-->
+<!--    <argument-->
+<!--        android:name="totalPoints"-->
+<!--        android:defaultValue="0"-->
+<!--        app:argType="integer" />-->
+
+<!--    <action-->
+<!--        android:id="@+id/action_global_submitGameDialogFragment22"-->
+<!--        app:destination="@id/submitGameDialogFragment2" />-->
+
+
+    <!--    <dialog-->
+    <!--        android:id="@+id/submitGameDialogFragment2"-->
+    <!--        android:name="com.dev360.m777.ui.dialogs.SubmitGameDialogFragment"-->
+    <!--        android:label="SubmitGameDialogFragment" >-->
+    <!--        <argument-->
+    <!--            android:name="sendBody"-->
+    <!--            app:argType="com.dev360.m777.models.SendBody" />-->
+    <!--        <argument-->
+    <!--            android:name="totalBids"-->
+    <!--            app:argType="integer"-->
+    <!--            android:defaultValue="0" />-->
+    <!--        <argument-->
+    <!--            android:name="totalPoints"-->
+    <!--            app:argType="integer"-->
+    <!--            android:defaultValue="0" />-->
+    <!--    </dialog><action android:id="@+id/action_global_submitGameDialogFragment2" app:destination="@id/submitGameDialogFragment"/>-->
+</navigation>

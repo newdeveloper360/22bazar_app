@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    tools:context=".ui.fragments.home.fragments.HomeFragment">
+
+    <LinearLayout
+        android:id="@+id/parentLyt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/header_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="6dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:clickable="true"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:textColor="@color/red"
+            android:textSize="20sp">
+
+            <requestFocus />
+        </TextView>
+
+        <ImageView
+            android:id="@+id/homeImageView"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/banner_place_holder" />
+
+        <LinearLayout
+            android:id="@+id/llbtnList1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="6dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/addFund"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/yellow_oval"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingVertical="3dp"
+                android:paddingLeft="3dp"
+                android:visibility="visible">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/round_white"
+                    android:padding="@dimen/_2sdp"
+                    android:src="@drawable/ic_outline_account_balance_24" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Add Funds"
+                    android:textColor="@color/text_color_over_buttons"
+                    android:textSize="19sp" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="16dp"
+                android:layout_height="match_parent" />
+
+
+            <LinearLayout
+                android:id="@+id/llWithdarwal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/yellow_oval"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingVertical="3dp"
+                android:paddingLeft="3dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/round_white"
+                    android:padding="@dimen/_2sdp"
+                    android:src="@drawable/withdraw_fund" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Withdarwal"
+                    android:textColor="@color/text_color_over_buttons"
+                    android:textSize="19sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llBottomBtns"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="6dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/inviteEarnll"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:visibility="visible"
+                android:background="@drawable/yellow_oval"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingVertical="3dp"
+                android:paddingLeft="3dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/round_white"
+                    android:padding="@dimen/_2sdp"
+                    android:src="@drawable/money_bag" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Invite &amp; Earn"
+                    android:textColor="@color/text_color_over_buttons"
+                    android:textSize="19sp" />
+            </LinearLayout>
+
+            <Space
+                android:id="@+id/space_16"
+                android:layout_width="16dp"
+                android:visibility="visible"
+                android:layout_height="match_parent" />
+
+            <!--            open userplay-->
+            <LinearLayout
+                android:id="@+id/open_game"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/yellow_oval"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingVertical="3dp"
+                android:paddingLeft="3dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/white_play" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Play Desawar"
+                    android:textColor="@color/text_color_over_buttons"
+                    android:textSize="19sp" />
+            </LinearLayout>
+
+            <Space
+                android:id="@+id/space_17"
+                android:layout_width="16dp"
+                android:visibility="gone"
+                android:layout_height="match_parent" />
+
+            <!--            starline-->
+            <LinearLayout
+                android:id="@+id/king_starline"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/yellow_oval"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingVertical="3dp"
+                android:paddingLeft="3dp"
+                android:visibility="visible">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/white_play" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="King Starline"
+                    android:textColor="@color/text_color_over_buttons"
+                    android:textSize="19sp" />
+            </LinearLayout>
+
+            <!--            userplay rates-->
+            <LinearLayout
+                android:id="@+id/llGameRates"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/yellow_oval"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingVertical="3dp"
+                android:paddingLeft="3dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/round_white"
+                    android:padding="@dimen/_2sdp"
+                    android:src="@drawable/ic_baseline_attach_money_24" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Game Rates"
+                    android:textColor="@color/text_color_over_buttons"
+                    android:textSize="19sp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llSupports"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="6dp"
+            android:layout_marginVertical="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imgIcon1"
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/whatsapp" />
+
+            <TextView
+                android:id="@+id/tvPhone1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLength="15"
+                android:text="+916357775777"
+                android:textColor="@color/black" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/imgIcon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/whatsapp" />
+
+            <TextView
+                android:id="@+id/tvPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLength="15"
+                android:text="+916357775777"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvGames"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="6dp"
+            android:layout_marginTop="3dp"
+            android:layout_weight="1"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/blueprint_home_screen_items" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

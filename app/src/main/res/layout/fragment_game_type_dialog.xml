@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="12dp">
+
+
+<LinearLayout
+    android:id="@+id/ly"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/yellow">
+
+        <TextView
+            android:id="@+id/bid_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Game Type"
+            android:gravity="center"
+            android:paddingVertical="10dp"
+            android:textColor="@color/text_color_over_buttons"
+            android:background="@color/yellow"
+            android:textSize="16dp" />
+
+        <ImageView
+            android:id="@+id/cross"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:paddingRight="6dp"
+            android:src="@drawable/ic_round_close_24" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/open"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="OPEN"
+        android:layout_marginHorizontal="8dp"
+        android:textColor="@color/black"
+        android:drawableRight="@drawable/ic_round_arrow_forward_ios_24"
+        android:layout_marginVertical="16dp" />
+
+    <TextView
+        android:id="@+id/close"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CLOSE"
+        android:layout_marginHorizontal="8dp"
+        android:textColor="@color/black"
+        android:drawableRight="@drawable/ic_round_arrow_forward_ios_24"
+        android:layout_marginBottom="16dp" />
+
+</LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

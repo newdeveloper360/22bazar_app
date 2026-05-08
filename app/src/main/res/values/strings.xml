@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE resources
+    [<!ENTITY appname "22 Bazar">]>
+<resources>
+    <string name="branch_key">key_live_jBkZDUE5XtfscPR1OzXdQmeaAqeRPuir</string>
+    <string name="branch_app_link">6b3x2.app.link</string>
+    <string name="open_game_already_set">Open game is Already set! Please Play With Close Game</string>
+    <string name="app_name">&appname;</string>
+    <string name="update_d_description">&appname; recommends that you update to the latest version. You can keep using this app while download the update</string>
+    <string name="update_app_title">Update &appname;</string>
+
+    <string name="slow_Internet_connection">Internet connection is slow please try again.</string>
+    <string name="check_your_internet">Please check your internet connection.</string>
+    <string name="places_try_again">Try again</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="verify_otp">Verify Otp</string>
+
+
+    <string-array name="drawerItems">
+        <item>@string/home</item>
+        <item>@string/my_bids</item>
+        <item>@string/passbook</item>
+        <item>@string/get_gift</item>
+        <!--        <item>@string/telegram</item>-->
+        <item>@string/chat</item>
+        <item>@string/funds</item>
+        <item>@string/notice_board</item>
+        <item>@string/game_rates</item>
+        <item>@string/charts</item>
+        <item>@string/settings</item>
+        <item>@string/invite_and_earn</item>
+        <item>@string/share_application</item>
+        <item>@string/logout</item>
+    </string-array>
+    <string-array name="drawerItems2">
+        <item>@string/home</item>
+        <item>@string/logout</item>
+
+    </string-array>
+
+
+    <string name="home">Home</string>
+    <string name="my_bids">My Bids</string>
+    <string name="mpin">Password</string>
+    <string name="passbook">Passbook</string>
+    <string name="get_gift">Get Gift</string>
+    <string name="telegram">Telegram</string>
+    <string name="chat">Chat</string>
+    <string name="funds">Funds</string>
+    <string name="notification">Notifications</string>
+    <string name="notice_board">Notice Board / Rules</string>
+    <string name="game_rates">Game Rates</string>
+    <string name="charts">Charts</string>
+    <string name="settings">Settings</string>
+    <string name="invite_and_earn">Invite And Earn</string>
+    <string name="share_application">Share Application</string>
+    <string name="logout">Logout</string>
+    <string name="please_wait">Please Wait…</string>
+    <string name="notice_board_rules_regulations"><![CDATA[Notice Board/ Rules & Regulations]]></string>
+
+
+    <string name="if_users_entered_wrong_bank_details_sara777_is_nnot_responsible">If Users Entered Wrong Bank Details Sara777 Is\nNot Responsible.</string>
+    <string name="before_requesting_withdraw_re_check_your_bank_ndetails">Before Requesting Withdraw Re-Check Your Bank\nDetails.</string>
+    <string name="after_withdraw_request_if_there_is_no_valid_wallet_nbalance_the_request_will_be_auto_declined">After Withdraw Request If There Is No Valid Wallet\nBalance The Request Will Be Auto Declined.</string>
+    <string name="if_admin_found_any_unfair_bets_blocking_of_digits_ncanning_or_match_fix_bets_nadmin_has_all_rights_to_take_necessary_actions_to_nblock_the_user">If Admin Found Any Unfair-bets,Blocking Of Digits,\nCanning Or Match Fix Bets.\nAdmin Has All Rights To Take Necessary Actions To\nBlock The User.</string>
+    <string name="if_admin_found_any_cheating_hacking_phishing_nadmin_has_all_rights_to_take_necessary_actions_to_nblock_the_user">If Admin Found Any Cheating,Hacking,Phishing.\nAdmin Has All Rights To Take Necessary Actions To\nBlock The User.</string>
+    <string name="resend_otp_with_countdown">Resend Otp in </string>
+    <string name="resend_otp">Resend Otp</string>
+    <string name="ruppes_symbol">₹</string>
+    <string name="channel_id">420</string>
+
+
+</resources>

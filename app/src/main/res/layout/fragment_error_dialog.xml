@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ly"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/white_round"
+    android:gravity="center"
+    android:paddingHorizontal="30dp"
+    android:paddingVertical="20dp"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/canceled"
+        />
+
+    <TextView
+        android:id="@+id/tvError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Something went wrong.\nPleas try again after somethime."
+        android:textColor="@color/pink"
+        android:textSize="16dp"
+        android:layout_marginVertical="16dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/ok"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/yellow"
+            android:text="Ok"
+            android:layout_marginHorizontal="16dp"
+            android:textColor="@color/text_color_over_buttons"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>

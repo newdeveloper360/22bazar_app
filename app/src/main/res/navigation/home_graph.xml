@@ -1,0 +1,1073 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/myBidsFragment"
+        android:name="com.userplay.bazar22.ui.fragments.mybids.fragments.MyBidsFragment"
+        android:label="fragment_my_bids"
+        tools:layout="@layout/fragment_my_bids">
+        <action
+            android:id="@+id/action_myBidsFragment_to_myBidsHistoryFragment"
+            app:destination="@id/myBidsHistoryFragment" />
+        <action
+            android:id="@+id/action_myBidsFragment_to_myGameResultsFragment"
+            app:destination="@id/myGameResultsFragment" />
+        <action
+            android:id="@+id/action_myBidsFragment_to_starLineBidHistoryFragment"
+            app:destination="@id/starLineBidHistoryFragment" />
+        <action
+            android:id="@+id/action_myBidsFragment_to_starLineResultHistoryFragment"
+            app:destination="@id/starLineResultHistoryFragment" />
+        <action
+            android:id="@+id/action_myBidsFragment_to_desawerBidHistoryFragment"
+            app:destination="@id/desawerBidHistoryFragment" />
+        <action
+            android:id="@+id/action_myBidsFragment_to_desawerBidResultHistoryFragment"
+            app:destination="@id/desawerBidResultHistoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/passBookFragment"
+        android:name="com.userplay.bazar22.ui.fragments.passbook.fragments.PassBookFragment"
+        android:label="fragment_pass_book"
+        tools:layout="@layout/fragment_pass_book" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_bidClosedDialogFragment"
+            app:destination="@id/bidClosedDialogFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_selectGameFragment"
+            app:destination="@id/selectGameFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_starLineFragment"
+            app:destination="@id/starLineFragment" />
+
+        <action
+            android:id="@+id/action_homeFragment_to_withdrawFundsFragment"
+            app:destination="@id/withdrawFundsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_gamesRatesFragment"
+            app:destination="@id/gamesRatesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fundsFragment"
+        android:name="com.userplay.bazar22.ui.fragments.funds.fragments.FundsFragment"
+        android:label="fragment_funds"
+        tools:layout="@layout/fragment_funds">
+        <action
+            android:id="@+id/action_fundsFragment_to_addBankDetailsFragment"
+            app:destination="@id/addBankDetailsFragment" />
+        <action
+            android:id="@+id/action_fundsFragment_to_addFundsFragment"
+            app:destination="@id/addFundsFragment" />
+        <action
+            android:id="@+id/action_fundsFragment_to_addUpiFragment"
+            app:destination="@id/addUpiFragment" />
+        <action
+            android:id="@+id/action_fundsFragment_to_fundsDepositeHistoryFragment"
+            app:destination="@id/fundsDepositeHistoryFragment" />
+        <action
+            android:id="@+id/action_fundsFragment_to_fundWithdrawHistoryFragment"
+            app:destination="@id/fundWithdrawHistoryFragment" />
+        <action
+            android:id="@+id/action_fundsFragment_to_withdrawFundsFragment"
+            app:destination="@id/withdrawFundsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/supportFragment"
+        android:name="com.userplay.bazar22.ui.fragments.support.SupportFragment"
+        android:label="fragment_support"
+        tools:layout="@layout/fragment_support" />
+    <dialog
+        android:id="@+id/bidClosedDialogFragment"
+        android:name="com.userplay.bazar22.ui.dialogs.BidClosedDialogFragment"
+        android:label="BidClosedDialogFragment">
+        <argument
+            android:name="openTime"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="closeTime"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="openResultTime"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="closeResultTime"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="bidTitle"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+    </dialog>
+    <fragment
+        android:id="@+id/singleDigitsFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.SingleDigitsFragment"
+        android:label="SingleDigitsFragment">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="openStatus"
+            app:argType="boolean" />
+    </fragment>
+    <fragment
+        android:id="@+id/SingleDigitNewFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.SingleDigitNewFragment"
+        android:label="SingleDigitNewFragment">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="openStatus"
+            app:argType="boolean" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectGameFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.SelectGameFragment"
+        android:label="SelectGameFragment">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="openStatus"
+            app:argType="boolean" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_singleDigitsFragment"
+        app:destination="@id/singleDigitsFragment" />
+    <action
+        android:id="@+id/action_global_singleDigitsNewFragment"
+        app:destination="@id/SingleDigitNewFragment" />
+    <dialog
+        android:id="@+id/gameTypeDialogFragment"
+        android:name="com.userplay.bazar22.ui.dialogs.GameTypeDialogFragment"
+        android:label="fragment_game_type_dialog"
+        tools:layout="@layout/fragment_game_type_dialog">
+        <argument
+            android:name="from"
+            app:argType="string" />
+    </dialog>
+
+
+    <dialog
+        android:id="@+id/submitGameDialogFragment"
+        android:name="com.userplay.bazar22.ui.dialogs.SubmitGameDialogFragment"
+        android:label="SubmitGameDialogFragment">
+        <argument
+            android:name="sendBody"
+            app:argType="com.userplay.bazar22.models.SendBody" />
+        <argument
+            android:name="totalBids"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <argument
+            android:name="totalPoints"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_submitGameDialogFragment_to_bidSuccessDialogFragment"
+            app:destination="@id/bidSuccessDialogFragment" />
+        <argument
+            android:name="gameType"
+            app:argType="boolean" />
+    </dialog>
+    <dialog
+        android:id="@+id/submitGameTotalJodiDialogFragment"
+        android:name="com.userplay.bazar22.ui.dialogs.SubmitGameTotalJodiDialogFragment"
+        android:label="SubmitGameTotalJodiDialogFragment">
+        <argument
+            android:name="sendBody"
+            app:argType="com.userplay.bazar22.models.SendBody" />
+        <argument
+            android:name="sendBodyActual"
+            app:argType="com.userplay.bazar22.models.SendBodyTotal" />
+
+        <argument
+            android:name="totalBids"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <argument
+            android:name="totalPoints"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_submitGameDialogFragment_to_bidSuccessDialogFragment"
+            app:destination="@id/bidSuccessDialogFragment" />
+        <argument
+            android:name="gameType"
+            app:argType="boolean" />
+    </dialog>
+    <dialog
+        android:id="@+id/bidSuccessDialogFragment"
+        android:name="com.userplay.bazar22.ui.dialogs.BidSuccessDialogFragment"
+        android:label="BidSuccessDialogFragment" />
+    <fragment
+        android:id="@+id/jodiDigitsFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.JodiDigitsFragment"
+        android:label="JodiDigitsFragment">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/jodiGroupFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.JodiGroupFragment"
+        android:label="jodiGroupFragment">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+    </fragment>
+
+
+
+    <fragment
+        android:id="@+id/jodiGroupNewFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.JodiGroupNewFragment"
+        android:label="jodiGroupNewFragment">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="openStatus"
+            app:argType="boolean" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/jodiTotalNewFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.JodiTotalNewFragment"
+        android:label="jodiTotalNewFragment">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="openStatus"
+            app:argType="boolean" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/jodiTotalFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.JodiTotalFragment"
+        android:label="jodiTotalFragment">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/jodiDigitsNewFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.JodiDigitsNewFragment"
+        android:label="jodiDigitsNewFragment">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="openStatus"
+            app:argType="boolean" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_jodiDigitsFragment"
+        app:destination="@id/jodiDigitsFragment" />
+    <action
+        android:id="@+id/action_global_jodiGroupFragment"
+        app:destination="@id/jodiGroupFragment" />
+    <action
+        android:id="@+id/action_global_jodiGroupNewFragment"
+        app:destination="@id/jodiGroupNewFragment" />
+    <action
+        android:id="@+id/action_global_jodiTotalFragment"
+        app:destination="@id/jodiTotalFragment" />
+    <action
+        android:id="@+id/action_global_jodiTotalNewFragment"
+        app:destination="@id/jodiTotalNewFragment" />
+    <action
+        android:id="@+id/action_global_jodiDigitsNewFragment"
+        app:destination="@id/jodiDigitsNewFragment" />
+    <action
+        android:id="@+id/action_global_gameTypeDialogFragment"
+        app:destination="@id/gameTypeDialogFragment" />
+    <action
+        android:id="@+id/action_global_submitGameDialogFragment"
+        app:destination="@id/submitGameDialogFragment" />
+
+    <action
+        android:id="@+id/action_global_submitGameTotalJodiDialogFragment"
+        app:destination="@id/submitGameTotalJodiDialogFragment" />
+    <fragment
+        android:id="@+id/SPMotorFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.SPMotorFragment"
+        android:label="SPMotorFragment">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="openStatus"
+            app:argType="boolean" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/SPMotorNewFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.SPMotorNewFragment"
+        android:label="SPMotorNewFragment">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="openStatus"
+            app:argType="boolean" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/DPMotorFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.DPMotorFragment"
+        android:label="DPMotorFragment">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="openStatus"
+            app:argType="boolean" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/DPMotorNewFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.DPMotorNewFragment"
+        android:label="DPMotorNewFragment">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="openStatus"
+            app:argType="boolean" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/PattiFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.PattiFragment"
+        android:label="PattiFragment">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="openStatus"
+            app:argType="boolean" />
+    </fragment>
+    <fragment
+        android:id="@+id/singlePanaFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.SinglePanaFragment"
+        android:label="SinglePanaFragment">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="openStatus"
+            app:argType="boolean" />
+    </fragment>
+    <fragment
+        android:id="@+id/SinglePannaNewFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.SinglePannaNewFragment"
+        android:label="SinglePannaNewFragment"
+        tools:layout="@layout/fragment_single_panna_new">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="openStatus"
+            app:argType="boolean" />
+    </fragment>
+    <fragment
+        android:id="@+id/SinglePannaBulkNewFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.SinglePanaBulkFragmentNew"
+        android:label="SinglePannaBulkNewFragment"
+        tools:layout="@layout/fragment_single_pana_bulk_new">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="openStatus"
+            app:argType="boolean" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_PattiFragment"
+        app:destination="@id/PattiFragment" />
+    <action
+        android:id="@+id/action_global_singlePanaFragment"
+        app:destination="@id/singlePanaFragment" />
+    <action
+        android:id="@+id/action_global_SinglePannaNewFragment"
+        app:destination="@id/SinglePannaNewFragment" />
+
+    <action
+        android:id="@+id/action_global_SPMotorFragment"
+        app:destination="@id/SPMotorFragment" />
+    <action
+        android:id="@+id/action_global_SPMotorNewFragment"
+        app:destination="@id/SPMotorNewFragment" />
+    <action
+        android:id="@+id/action_global_DPMotorFragment"
+        app:destination="@id/DPMotorFragment" />
+
+    <action
+        android:id="@+id/action_global_DPMotorNewFragment"
+        app:destination="@id/DPMotorNewFragment" />
+    <fragment
+        android:id="@+id/doublePanaFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.DoublePanaFragment"
+        android:label="fragment_double_pana"
+        tools:layout="@layout/fragment_double_pana">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="openStatus"
+            app:argType="boolean" />
+    </fragment>
+    <fragment
+        android:id="@+id/doublePanaNewFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.DoublePannaNewFragment"
+        android:label="doublePanaNewFragment"
+        tools:layout="@layout/fragment_double_panna_new">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="openStatus"
+            app:argType="boolean" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_doublePanaFragment"
+        app:destination="@id/doublePanaFragment" />
+    <action
+        android:id="@+id/action_global_doublePanaNewFragment"
+        app:destination="@id/doublePanaNewFragment" />
+    <fragment
+        android:id="@+id/triplePanaFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.TriplePanaFragment"
+        android:label="TriplePanaFragment">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="openStatus"
+            app:argType="boolean" />
+    </fragment>
+    <fragment
+        android:id="@+id/TriplePannaNewFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.TriplePannaNewFragment"
+        android:label="TriplePannaNewFragment">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="openStatus"
+            app:argType="boolean" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_triplePanaFragment"
+        app:destination="@id/triplePanaFragment" />
+    <action
+        android:id="@+id/action_global_TriplePannaNewFragment"
+        app:destination="@id/TriplePannaNewFragment" />
+    <fragment
+        android:id="@+id/singlePanaBulkFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.SinglePanaBulkFragment"
+        android:label="SinglePanaBulkFragment">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="openStatus"
+            app:argType="boolean" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_singlePanaBulkFragment"
+        app:destination="@id/singlePanaBulkFragment" />
+    <action
+        android:id="@+id/action_global_SinglePannaBulkNewFragment"
+        app:destination="@id/SinglePannaBulkNewFragment" />
+    <fragment
+        android:id="@+id/halfSangamBFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.HalfSangamBFragment"
+        android:label="HalfSangamBFragment">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/halfSangamAFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.HalfSangamAFragment"
+        android:label="HalfSangamAFragment">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/halfSangamFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.HalfSangamNewFragment"
+        android:label="HalfSangamNewFragment">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/halfSangamANewFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.HalfSangamANewFragment"
+        android:label="HalfSangamANewFragment">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+    </fragment>
+
+
+
+    <fragment
+        android:id="@+id/halfSangamBNewFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.HalfSangamBNewFragment"
+        android:label="HalfSangamBNewFragment">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/fullSangamFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.FullSangamFragment"
+        android:label="FullSangamFragment">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/fullSangamNewFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.FullSangamNewFragment"
+        android:label="FullSangamNewFragment">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/jodiDigitBulkFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.JodiDigitBulkFragment"
+        android:label="JodiDigitBulkFragment">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="openStatus"
+            app:argType="boolean" />
+    </fragment>
+    <fragment
+        android:id="@+id/jodiDigitBulkNewFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.JodiDigitsBulkNewFragment"
+        android:label="jodiDigitBulkNewFragment">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="openStatus"
+            app:argType="boolean" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_halfSangamBFragment"
+        app:destination="@id/halfSangamBFragment" />
+    <action
+        android:id="@+id/action_global_halfSangamAFragment"
+        app:destination="@id/halfSangamAFragment" />
+    <action
+        android:id="@+id/action_global_halfSangamNewFragment"
+        app:destination="@id/halfSangamFragment" />
+
+    <action
+        android:id="@+id/action_global_halfSangamANewFragment"
+        app:destination="@id/halfSangamANewFragment" />
+    <action
+        android:id="@+id/action_global_halfSangamBNewFragment"
+        app:destination="@id/halfSangamBNewFragment" />
+
+    <action
+        android:id="@+id/action_global_fullSangamFragment"
+        app:destination="@id/fullSangamFragment" />
+
+    <action
+        android:id="@+id/action_global_fullSangamNewFragment"
+        app:destination="@id/fullSangamNewFragment" />
+    <action
+        android:id="@+id/action_global_jodiDigitBulkFragment"
+        app:destination="@id/jodiDigitBulkFragment" />
+    <action
+        android:id="@+id/action_global_jodiDigitBulkNewFragment"
+        app:destination="@id/jodiDigitBulkNewFragment" />
+    <fragment
+        android:id="@+id/doublePanaBulkFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.DoublePanaBulkFragment"
+        android:label="DoublePanaBulkFragment">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="openStatus"
+            app:argType="boolean" />
+    </fragment>
+    <fragment
+        android:id="@+id/doublePanaBulkNewFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.DoublePanaBulkNewFragment"
+        android:label="doublePanaBulkNewFragment"
+        tools:layout="@layout/fragment_double_pana_bulk_new">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="openStatus"
+            app:argType="boolean" />
+    </fragment>
+    <fragment
+        android:id="@+id/SPDPTPBulkFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.SPDPTPFragment"
+        android:label="SPDPTPBulkFragment">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="openStatus"
+            app:argType="boolean" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_doublePanaBulkFragment"
+        app:destination="@id/doublePanaBulkFragment" />
+    <action
+        android:id="@+id/action_global_doublePanaBulkNewFragment"
+        app:destination="@id/doublePanaBulkNewFragment" />
+    <action
+        android:id="@+id/action_global_SPDPTPBulkFragment"
+        app:destination="@id/SPDPTPBulkFragment" />
+
+
+    <action
+        android:id="@+id/action_global_JodiFamilyFragment"
+        app:destination="@id/JodiFamilyFragment" />
+    <action
+        android:id="@+id/action_global_PanaFamilyFragment"
+        app:destination="@id/PanaFamilyFragment" />
+    <fragment
+        android:id="@+id/singleDigitsBulkFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.SingleDigitsBulkFragment"
+        android:label="SingleDigitsBulkFragment">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="openStatus"
+            app:argType="boolean" />
+    </fragment>
+    <fragment
+        android:id="@+id/singleDigitBulkNewFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.SingleDigitBulkNewFragment"
+        android:label="SingleDigitsBulkFragment">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="openStatus"
+            app:argType="boolean" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_singleDigitsBulkFragment"
+        app:destination="@id/singleDigitsBulkFragment" />
+    <action
+        android:id="@+id/action_global_singleDigitsBulkNewFragment"
+        app:destination="@id/singleDigitBulkNewFragment" />
+    <fragment
+        android:id="@+id/starLineFragment"
+        android:name="com.userplay.bazar22.ui.fragments.star_line.ui.fragments.StarLineFragment"
+        android:label="StarLineFragment">
+        <action
+            android:id="@+id/action_starLineFragment_to_bidClosedDialogFragment"
+            app:destination="@id/bidClosedDialogFragment" />
+        <action
+            android:id="@+id/action_starLineFragment_to_selectGameFragment"
+            app:destination="@id/selectGameFragment" />
+        <action
+            android:id="@+id/action_starLineFragment_to_kingStarHistoryFragment"
+            app:destination="@id/kingStarHistoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/kingStarHistoryFragment"
+        android:name="com.userplay.bazar22.ui.fragments.star_line.ui.fragments.KingStarHistoryFragment"
+        android:label="KingStarHistoryFragment" />
+    <fragment
+        android:id="@+id/myBidsHistoryFragment"
+        android:name="com.userplay.bazar22.ui.fragments.mybids.fragments.MyBidsHistoryFragment"
+        android:label="MyBidsHistoryFragment" />
+    <fragment
+        android:id="@+id/myGameResultsFragment"
+        android:name="com.userplay.bazar22.ui.fragments.mybids.fragments.MyGameResultsFragment"
+        android:label="MyGameResultsFragment" />
+    <fragment
+        android:id="@+id/starLineBidHistoryFragment"
+        android:name="com.userplay.bazar22.ui.fragments.mybids.fragments.StarLineBidHistoryFragment"
+        android:label="fragment_star_line_bid_history"
+        tools:layout="@layout/fragment_star_line_bid_history" />
+    <fragment
+        android:id="@+id/starLineResultHistoryFragment"
+        android:name="com.userplay.bazar22.ui.fragments.mybids.fragments.StarLineResultHistoryFragment"
+        android:label="StarLineResultHistoryFragment" />
+    <fragment
+        android:id="@+id/addBankDetailsFragment"
+        android:name="com.userplay.bazar22.ui.fragments.funds.fragments.AddBankDetailsFragment"
+        android:label="AddBankDetailsFragment" />
+    <fragment
+        android:id="@+id/addFundsFragment"
+        android:name="com.userplay.bazar22.ui.fragments.funds.fragments.AddFundsFragment"
+        android:label="AddFundsFragment">
+        <action
+            android:id="@+id/action_addFundsFragment_to_addFundWebViewFragment"
+            app:destination="@id/addFundWebViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addUpiFragment"
+        android:name="com.userplay.bazar22.ui.fragments.funds.fragments.AddUpiFragment"
+        android:label="AddUpiFragment" />
+    <fragment
+        android:id="@+id/fundsDepositeHistoryFragment"
+        android:name="com.userplay.bazar22.ui.fragments.funds.fragments.FundsDepositeHistoryFragment"
+        android:label="FundsDepositeHistoryFragment" />
+    <fragment
+        android:id="@+id/fundWithdrawHistoryFragment"
+        android:name="com.userplay.bazar22.ui.fragments.funds.fragments.FundWithdrawHistoryFragment"
+        android:label="FundWithdrawHistoryFragment" />
+    <fragment
+        android:id="@+id/withdrawFundsFragment"
+        android:name="com.userplay.bazar22.ui.fragments.funds.fragments.WithdrawFundsFragment"
+        android:label="WithdrawFundsFragment" />
+    <fragment
+        android:id="@+id/desawerBidHistoryFragment"
+        android:name="com.userplay.bazar22.ui.fragments.mybids.fragments.DesawerBidHistoryFragment"
+        android:label="DesawerBidHistoryFragment" />
+    <fragment
+        android:id="@+id/desawerBidResultHistoryFragment"
+        android:name="com.userplay.bazar22.ui.fragments.mybids.fragments.DesawerBidResultHistoryFragment"
+        android:label="DesawerBidResultHistoryFragment" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.userplay.bazar22.ui.fragments.navigation.fragments.SettingsFragment"
+        android:label="SettingsFragment" />
+    <fragment
+        android:id="@+id/withDrawInformationFragment"
+        android:name="com.userplay.bazar22.ui.fragments.navigation.fragments.WithDrawInformationFragment"
+        android:label="WithDrawInformationFragment" />
+    <fragment
+        android:id="@+id/inviteAndEarnFragment"
+        android:name="com.userplay.bazar22.ui.fragments.navigation.fragments.InviteAndEarnFragment"
+        android:label="InviteAndEarnFragment" />
+    <fragment
+        android:id="@+id/chartsFragment"
+        android:name="com.userplay.bazar22.ui.fragments.navigation.fragments.ChartsFragment"
+        android:label="ChartsFragment" />
+    <fragment
+        android:id="@+id/gamesRatesFragment"
+        android:name="com.userplay.bazar22.ui.fragments.navigation.fragments.GamesRatesFragment"
+        android:label="GamesRatesFragment" />
+    <action
+        android:id="@+id/action_global_bidSuccessDialogFragment"
+        app:destination="@id/bidSuccessDialogFragment" />
+    <dialog
+        android:id="@+id/updateDialogeFragment"
+        android:name="com.userplay.bazar22.ui.dialogs.UpdateDialogeFragment"
+        android:label="UpdateDialogeFragment" />
+    <dialog
+        android:id="@+id/withDrawTermConditionDialogFragment"
+        android:name="com.userplay.bazar22.ui.dialogs.WithDrawTermConditionDialogFragment"
+        android:label="WithDrawTermConditionDialogFragment" />
+    <dialog
+        android:id="@+id/internetErrorDialogFragment"
+        android:name="com.userplay.bazar22.ui.dialogs.InternetErrorDialogFragment"
+        android:label="InternetErrorDialogFragment" />
+    <dialog
+        android:id="@+id/errorDialogFragment"
+        android:name="com.userplay.bazar22.ui.dialogs.ErrorDialogFragment"
+        android:label="ErrorDialogFragment" />
+    <fragment
+        android:id="@+id/successDialogFragment"
+        android:name="com.userplay.bazar22.ui.dialogs.SuccessDialogFragment"
+        android:label="SuccessDialogFragment" />
+    <dialog
+        android:id="@+id/logoutFragment"
+        android:name="com.userplay.bazar22.ui.dialogs.LogoutFragment"
+        android:label="LogoutFragment" />
+    <action
+        android:id="@+id/action_global_errorDialogFragment"
+        app:destination="@id/errorDialogFragment" />
+    <fragment
+        android:id="@+id/addFundWebViewFragment"
+        android:name="com.userplay.bazar22.ui.fragments.funds.fragments.AddFundWebViewFragment"
+        android:label="AddFundWebViewFragment">
+        <argument
+            android:name="amount"
+            app:argType="integer" />
+        <argument
+            android:name="pay_url"
+            app:argType="string" />
+    </fragment>
+
+
+
+
+    <fragment
+        android:id="@+id/JodiFamilyFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.JodiFamilyFragment"
+        android:label="JodiFamilyFragment">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="openStatus"
+            app:argType="boolean" />
+    </fragment>
+    <fragment
+        android:id="@+id/PanaFamilyFragment"
+        android:name="com.userplay.bazar22.ui.fragments.home.fragments.PanaFamilyFragment"
+        android:label="JodiFamilyFragment">
+        <argument
+            android:name="marketID"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="openStatus"
+            app:argType="boolean" />
+    </fragment>
+</navigation>

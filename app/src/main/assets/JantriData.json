@@ -1,0 +1,617 @@
+[
+  {
+    "title": "Jantri",
+    "numbers": [
+      {
+        "number": "01",
+        "id": "1",
+        "gameTypeId": 13
+      },
+      {
+        "number": "02",
+        "id": "2",
+        "gameTypeId": 13
+      },
+      {
+        "number": "03",
+        "id": "3",
+        "gameTypeId": 13
+      },
+      {
+        "number": "04",
+        "id": "4",
+        "gameTypeId": 13
+      },
+      {
+        "number": "05",
+        "id": "5",
+        "gameTypeId": 13
+      },
+      {
+        "number": "06",
+        "id": "6",
+        "gameTypeId": 13
+      },
+      {
+        "number": "07",
+        "id": "7",
+        "gameTypeId": 13
+      },
+      {
+        "number": "08",
+        "id": "8",
+        "gameTypeId": 13
+      },
+      {
+        "number": "09",
+        "id": "9",
+        "gameTypeId": 13
+      },
+      {
+        "number": "10",
+        "id": "10",
+        "gameTypeId": 13
+      },
+      {
+        "number": "11",
+        "id": "11",
+        "gameTypeId": 13
+      },
+      {
+        "number": "12",
+        "id": "12",
+        "gameTypeId": 13
+      },
+      {
+        "number": "13",
+        "id": "13",
+        "gameTypeId": 13
+      },
+      {
+        "number": "14",
+        "id": "14",
+        "gameTypeId": 13
+      },
+      {
+        "number": "15",
+        "id": "15",
+        "gameTypeId": 13
+      },
+      {
+        "number": "16",
+        "id": "16",
+        "gameTypeId": 13
+      },
+      {
+        "number": "17",
+        "id": "17",
+        "gameTypeId": 13
+      },
+      {
+        "number": "18",
+        "id": "18",
+        "gameTypeId": 13
+      },
+      {
+        "number": "19",
+        "id": "19",
+        "gameTypeId": 13
+      },
+      {
+        "number": "20",
+        "id": "20",
+        "gameTypeId": 13
+      },
+      {
+        "number": "21",
+        "id": "21",
+        "gameTypeId": 13
+      },
+      {
+        "number": "22",
+        "id": "22",
+        "gameTypeId": 13
+      },
+      {
+        "number": "23",
+        "id": "23",
+        "gameTypeId": 13
+      },
+      {
+        "number": "24",
+        "id": "24",
+        "gameTypeId": 13
+      },
+      {
+        "number": "25",
+        "id": "25",
+        "gameTypeId": 13
+      },
+      {
+        "number": "26",
+        "id": "26",
+        "gameTypeId": 13
+      },
+      {
+        "number": "27",
+        "id": "27",
+        "gameTypeId": 13
+      },
+      {
+        "number": "28",
+        "id": "28",
+        "gameTypeId": 13
+      },
+      {
+        "number": "29",
+        "id": "29",
+        "gameTypeId": 13
+      },
+      {
+        "number": "30",
+        "id": "30",
+        "gameTypeId": 13
+      },
+      {
+        "number": "31",
+        "id": "31",
+        "gameTypeId": 13
+      },
+      {
+        "number": "32",
+        "id": "32",
+        "gameTypeId": 13
+      },
+      {
+        "number": "33",
+        "id": "33",
+        "gameTypeId": 13
+      },
+      {
+        "number": "34",
+        "id": "34",
+        "gameTypeId": 13
+      },
+      {
+        "number": "35",
+        "id": "35",
+        "gameTypeId": 13
+      },
+      {
+        "number": "36",
+        "id": "36",
+        "gameTypeId": 13
+      },
+      {
+        "number": "37",
+        "id": "37",
+        "gameTypeId": 13
+      },
+      {
+        "number": "38",
+        "id": "38",
+        "gameTypeId": 13
+      },
+      {
+        "number": "39",
+        "id": "39",
+        "gameTypeId": 13
+      },
+      {
+        "number": "40",
+        "id": "40",
+        "gameTypeId": 13
+      },
+      {
+        "number": "41",
+        "id": "41",
+        "gameTypeId": 13
+      },
+      {
+        "number": "42",
+        "id": "42",
+        "gameTypeId": 13
+      },
+      {
+        "number": "43",
+        "id": "43",
+        "gameTypeId": 13
+      },
+      {
+        "number": "44",
+        "id": "44",
+        "gameTypeId": 13
+      },
+      {
+        "number": "45",
+        "id": "45",
+        "gameTypeId": 13
+      },
+      {
+        "number": "46",
+        "id": "46",
+        "gameTypeId": 13
+      },
+      {
+        "number": "47",
+        "id": "47",
+        "gameTypeId": 13
+      },
+      {
+        "number": "48",
+        "id": "48",
+        "gameTypeId": 13
+      },
+      {
+        "number": "49",
+        "id": "49",
+        "gameTypeId": 13
+      },
+      {
+        "number": "50",
+        "id": "50",
+        "gameTypeId": 13
+      },
+      {
+        "number": "51",
+        "id": "51",
+        "gameTypeId": 13
+      },
+      {
+        "number": "52",
+        "id": "52",
+        "gameTypeId": 13
+      },
+      {
+        "number": "53",
+        "id": "53",
+        "gameTypeId": 13
+      },
+      {
+        "number": "54",
+        "id": "54",
+        "gameTypeId": 13
+      },
+      {
+        "number": "55",
+        "id": "55",
+        "gameTypeId": 13
+      },
+      {
+        "number": "56",
+        "id": "56",
+        "gameTypeId": 13
+      },
+      {
+        "number": "57",
+        "id": "57",
+        "gameTypeId": 13
+      },
+      {
+        "number": "58",
+        "id": "58",
+        "gameTypeId": 13
+      },
+      {
+        "number": "59",
+        "id": "59",
+        "gameTypeId": 13
+      },
+      {
+        "number": "60",
+        "id": "60",
+        "gameTypeId": 13
+      },
+      {
+        "number": "61",
+        "id": "61",
+        "gameTypeId": 13
+      },
+      {
+        "number": "62",
+        "id": "62",
+        "gameTypeId": 13
+      },
+      {
+        "number": "63",
+        "id": "63",
+        "gameTypeId": 13
+      },
+      {
+        "number": "64",
+        "id": "64",
+        "gameTypeId": 13
+      },
+      {
+        "number": "65",
+        "id": "65",
+        "gameTypeId": 13
+      },
+      {
+        "number": "66",
+        "id": "66",
+        "gameTypeId": 13
+      },
+      {
+        "number": "67",
+        "id": "67",
+        "gameTypeId": 13
+      },
+      {
+        "number": "68",
+        "id": "68",
+        "gameTypeId": 13
+      },
+      {
+        "number": "69",
+        "id": "69",
+        "gameTypeId": 13
+      },
+      {
+        "number": "70",
+        "id": "70",
+        "gameTypeId": 13
+      },
+      {
+        "number": "71",
+        "id": "71",
+        "gameTypeId": 13
+      },
+      {
+        "number": "72",
+        "id": "72",
+        "gameTypeId": 13
+      },
+      {
+        "number": "73",
+        "id": "73",
+        "gameTypeId": 13
+      },
+      {
+        "number": "74",
+        "id": "74",
+        "gameTypeId": 13
+      },
+      {
+        "number": "75",
+        "id": "75",
+        "gameTypeId": 13
+      },
+      {
+        "number": "76",
+        "id": "76",
+        "gameTypeId": 13
+      },
+      {
+        "number": "77",
+        "id": "77",
+        "gameTypeId": 13
+      },
+      {
+        "number": "78",
+        "id": "78",
+        "gameTypeId": 13
+      },
+      {
+        "number": "79",
+        "id": "79",
+        "gameTypeId": 13
+      },
+      {
+        "number": "80",
+        "id": "80",
+        "gameTypeId": 13
+      },
+      {
+        "number": "81",
+        "id": "81",
+        "gameTypeId": 13
+      },
+      {
+        "number": "82",
+        "id": "82",
+        "gameTypeId": 13
+      },
+      {
+        "number": "83",
+        "id": "83",
+        "gameTypeId": 13
+      },
+      {
+        "number": "84",
+        "id": "84",
+        "gameTypeId": 13
+      },
+      {
+        "number": "85",
+        "id": "85",
+        "gameTypeId": 13
+      },
+      {
+        "number": "86",
+        "id": "86",
+        "gameTypeId": 13
+      },
+      {
+        "number": "87",
+        "id": "87",
+        "gameTypeId": 13
+      },
+      {
+        "number": "88",
+        "id": "88",
+        "gameTypeId": 13
+      },
+      {
+        "number": "89",
+        "id": "89",
+        "gameTypeId": 13
+      },
+      {
+        "number": "90",
+        "id": "90",
+        "gameTypeId": 13
+      },
+      {
+        "number": "91",
+        "id": "91",
+        "gameTypeId": 13
+      },
+      {
+        "number": "92",
+        "id": "92",
+        "gameTypeId": 13
+      },
+      {
+        "number": "93",
+        "id": "93",
+        "gameTypeId": 13
+      },
+      {
+        "number": "94",
+        "id": "94",
+        "gameTypeId": 13
+      },
+      {
+        "number": "95",
+        "id": "95",
+        "gameTypeId": 13
+      },
+      {
+        "number": "96",
+        "id": "96",
+        "gameTypeId": 13
+      },
+      {
+        "number": "97",
+        "id": "97",
+        "gameTypeId": 13
+      },
+      {
+        "number": "98",
+        "id": "98",
+        "gameTypeId": 13
+      },
+      {
+        "number": "99",
+        "id": "99",
+        "gameTypeId": 13
+      },
+      {
+        "number": "00",
+        "id": "100",
+        "gameTypeId": 13
+      }
+    ]
+  },
+  {
+    "title": "Andar Haruf",
+    "numbers": [
+      {
+        "number": "111",
+        "id": "101",
+        "gameTypeId": 14
+      },
+      {
+        "number": "222",
+        "id": "102",
+        "gameTypeId": 14
+      },
+      {
+        "number": "333",
+        "id": "103",
+        "gameTypeId": 14
+      },
+      {
+        "number": "444",
+        "id": "104",
+        "gameTypeId": 14
+      },
+      {
+        "number": "555",
+        "id": "105",
+        "gameTypeId": 14
+      },
+      {
+        "number": "666",
+        "id": "106",
+        "gameTypeId": 14
+      },
+      {
+        "number": "777",
+        "id": "107",
+        "gameTypeId": 14
+      },
+      {
+        "number": "888",
+        "id": "108",
+        "gameTypeId": 14
+      },
+      {
+        "number": "999",
+        "id": "109",
+        "gameTypeId": 14
+      },
+      {
+        "number": "000",
+        "id": "110",
+        "gameTypeId": 14
+      }
+    ]
+  },
+  {
+    "title": "Bahar Haruf",
+    "numbers": [
+      {
+        "number": "111",
+        "id": "111",
+        "gameTypeId": 15
+      },
+      {
+        "number": "222",
+        "id": "112",
+        "gameTypeId": 15
+      },
+      {
+        "number": "333",
+        "id": "113",
+        "gameTypeId": 15
+      },
+      {
+        "number": "444",
+        "id": "114",
+        "gameTypeId": 15
+      },
+      {
+        "number": "555",
+        "id": "115",
+        "gameTypeId": 15
+      },
+      {
+        "number": "666",
+        "id": "116",
+        "gameTypeId": 15
+      },
+      {
+        "number": "777",
+        "id": "117",
+        "gameTypeId": 15
+      },
+      {
+        "number": "888",
+        "id": "118",
+        "gameTypeId": 15
+      },
+      {
+        "number": "999",
+        "id": "119",
+        "gameTypeId": 15
+      },
+      {
+        "number": "000",
+        "id": "120",
+        "gameTypeId": 15
+      }
+    ]
+  }
+]

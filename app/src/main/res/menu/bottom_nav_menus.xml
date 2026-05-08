@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <item
+        android:id="@+id/myBidsFragment"
+        android:icon="@drawable/ic_bid_nav"
+        android:title="My Bids" />
+
+    <item
+        android:id="@+id/passBookFragment"
+        android:icon="@drawable/ic_passbook"
+        android:title="Passbook" />
+
+<!--    <item-->
+<!--        android:id="@+id/passBookFragment"-->
+<!--        android:icon="@drawable/ic_telegram_black"-->
+<!--        android:title="Telegram" />-->
+    <item
+        android:id="@+id/homeFragment"
+        tools:ignore="MenuTitle" />
+    <item
+        android:id="@+id/fundsFragment"
+        android:icon="@drawable/ic_outline_account_balance_24"
+        android:title="Funds" />
+    <item
+        android:id="@+id/supportFragment"
+        android:icon="@drawable/ic_outline_support_agent_24"
+        android:title="Support" />
+
+
+</menu>

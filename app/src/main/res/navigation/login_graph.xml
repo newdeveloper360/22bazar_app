@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.userplay.bazar22.ui.fragments.login.LoginFragment"
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_forgotDialogFragment"
+            app:destination="@id/forgotDialogFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_sendOtpFragment"
+            app:destination="@id/sendOtpFragment" />
+
+        <action
+            android:id="@+id/action_loginFragment_to_matkaFragment"
+            app:destination="@id/matkaFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/forgotDialogFragment"
+        android:name="com.userplay.bazar22.ui.dialogs.ForgotDialogFragment"
+        android:label="fragment_forgot_dialog"
+        tools:layout="@layout/fragment_forgot_dialog" >
+        <action
+            android:id="@+id/action_forgotDialogFragment_to_setNewPinFragment"
+            app:destination="@id/setNewPinFragment" />
+    </dialog>
+    <fragment
+        android:id="@+id/setNewPinFragment"
+        android:name="com.userplay.bazar22.ui.fragments.login.SetNewPinFragment"
+        android:label="SetNewPinFragment" >
+        <argument
+            android:name="phone"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/matkaFragment"
+        android:name="com.userplay.bazar22.ui.fragments.login.MatkaFragment"
+        android:label="matkaFragment" >
+        <action
+            android:id="@+id/action_matkaFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.userplay.bazar22.ui.fragments.login.SignUpFragment"
+        android:label="SignUpFragment" >
+        <action
+            android:id="@+id/action_signUpFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_signUpFragment_to_sendOtpFragment"
+            app:destination="@id/sendOtpFragment" />
+        <action
+            android:id="@+id/action_signUpFragment_to_matkaFragment"
+            app:destination="@id/matkaFragment" />
+
+    </fragment>
+    <dialog
+        android:id="@+id/sendOtpFragment"
+        android:name="com.userplay.bazar22.ui.dialogs.SendOtpFragment"
+        android:label="SendOtpFragment" >
+        <argument
+            android:name="phone"
+            app:argType="string" />
+    </dialog>
+    <dialog
+        android:id="@+id/internetErrorDialogFragment2"
+        android:name="com.userplay.bazar22.ui.dialogs.InternetErrorDialogFragment"
+        android:label="InternetErrorDialogFragment" />
+    <dialog
+        android:id="@+id/errorDialogFragment2"
+        android:name="com.userplay.bazar22.ui.dialogs.ErrorDialogFragment"
+        android:label="ErrorDialogFragment" />
+
+
+</navigation>

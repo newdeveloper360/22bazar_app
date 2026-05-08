@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="10dp"
+        android:paddingHorizontal="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_round_arrow_back_ios_24"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="6dp"
+            android:text="Passbook"
+            android:textColor="@color/black"
+            android:textSize="20dp"/>
+
+        <ImageView
+            android:id="@+id/rotate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="8dp"
+            android:src="@drawable/ic_baseline_screen_rotation_24"/>
+
+    </LinearLayout>
+
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="3dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:background="@color/yellow"
+                    android:textColor="@color/black"
+                    android:paddingVertical="8dp"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:layout_height="wrap_content"
+                    android:text="Transaction Date"/>
+                <LinearLayout
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"/>
+                <TextView
+                    android:layout_width="280dp"
+                    android:background="@color/yellow"
+                    android:textColor="@color/black"
+                    android:paddingVertical="8dp"
+                    android:paddingLeft="8dp"
+                    android:textSize="12sp"
+                    android:layout_height="wrap_content"
+                    android:text="Particulars"/>
+                <LinearLayout
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"/>
+                <TextView
+                    android:layout_width="150dp"
+                    android:background="@color/yellow"
+                    android:textColor="@color/black"
+                    android:paddingVertical="8dp"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:layout_height="wrap_content"
+                    android:text="Previous Amount"/>
+                <LinearLayout
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"/>
+                <TextView
+                    android:layout_width="150dp"
+                    android:background="@color/yellow"
+                    android:textColor="@color/black"
+                    android:paddingVertical="8dp"
+                    android:gravity="center"
+                    android:textSize="12dp"
+                    android:layout_height="wrap_content"
+                    android:text="Transaction Amount"/>
+                <LinearLayout
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"/>
+                <TextView
+                    android:layout_width="150dp"
+                    android:background="@color/yellow"
+                    android:textColor="@color/black"
+                    android:paddingVertical="8dp"
+                    android:gravity="center"
+                    android:textSize="12dp"
+                    android:layout_height="wrap_content"
+                    android:text="Current Amount"/>
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                tools:listitem="@layout/blueprint_passbook_items"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+
+    </HorizontalScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="2dp">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            android:backgroundTint="@color/yellow"
+            android:textColor="@color/black"
+            android:text="Previous"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:background="@color/yellow"
+            android:textColor="@color/black"
+            android:layout_marginHorizontal="6dp"
+            android:textStyle="bold"
+            android:text="(1/1)"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            android:backgroundTint="@color/yellow"
+            android:textColor="@color/black"
+            android:text="next"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
