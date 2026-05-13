@@ -13,6 +13,7 @@ import com.userplay.bazar22.databinding.ActivitySplashBinding
 import com.userplay.bazar22.network.ApiState
 import com.userplay.bazar22.network.CheckNetwork.Companion.isNetworkConnected
 import com.userplay.bazar22.preferences.MatkaPref
+import com.userplay.bazar22.printer.BillPrintActivity.Companion.startPrintActivity
 import com.userplay.bazar22.ui.dialogs.BlockDialogFragment
 import com.userplay.bazar22.ui.dialogs.InternetErrorDialogFragment
 import com.userplay.bazar22.ui.dialogs.UpdateDialogeFragment
@@ -74,6 +75,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
+        //startPrintActivity()
         initView()
         observer()
     }

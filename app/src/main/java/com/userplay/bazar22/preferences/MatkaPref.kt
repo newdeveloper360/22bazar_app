@@ -15,6 +15,7 @@ import com.userplay.bazar22.utils.Constants.CHART_URL
 import com.userplay.bazar22.utils.Constants.CONFIRMED
 import com.userplay.bazar22.utils.Constants.DESAWAR_NOTIFICATION
 import com.userplay.bazar22.utils.Constants.ENABLE_DESAWAR_ONLY
+import com.userplay.bazar22.utils.Constants.GAMESUBNAME
 import com.userplay.bazar22.utils.Constants.FCM_KEY
 import com.userplay.bazar22.utils.Constants.GENERAL_NOTIFICATION
 import com.userplay.bazar22.utils.Constants.HOME_MESSAGE
@@ -577,5 +578,29 @@ class MatkaPref @Inject constructor(@ApplicationContext context: Context) {
 
     fun getMatkaEnable(): Boolean {
         return preference.getBoolean(Constants.MATKA_ENABLE, false)
+    }
+
+    fun setSerialNumber(serialNumber: Int) {
+        editor.putInt("serial_number", serialNumber).apply()
+    }
+
+    fun getSerialNumber(): Int {
+        return preference.getInt("serial_number", 1)
+    }
+
+    fun setSerialDate(date: String) {
+        editor.putString("serial_number_date", date).apply()
+    }
+
+    fun getSerialDate(): String? {
+        return preference.getString("serial_number_date", null)
+    }
+
+    fun setGameSubName(name: String?) {
+        editor.putString(GAMESUBNAME, name).apply()
+    }
+
+    fun getGameSubName(): String {
+        return preference.getString(GAMESUBNAME, "") ?: ""
     }
 }

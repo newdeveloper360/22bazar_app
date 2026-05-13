@@ -1,17 +1,30 @@
 package com.userplay.bazar22.ui.dialogs
 
+import android.R.attr.text
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
+import android.device.PrinterManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.*
+import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.LinearLayout
+import android.widget.ScrollView
+import android.widget.Space
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.FileProvider
+import androidx.core.graphics.toColorInt
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -23,6 +36,8 @@ import com.userplay.bazar22.databinding.FragmentSubmitGameDialogBinding
 import com.userplay.bazar22.network.ApiState
 import com.userplay.bazar22.network.CheckNetwork.Companion.isNetworkConnected
 import com.userplay.bazar22.preferences.MatkaPref
+import com.userplay.bazar22.printer.BillItem
+import com.userplay.bazar22.printer.BillPrintActivity.Companion.newIntent
 import com.userplay.bazar22.ui.fragments.home.adapters.GameSubmitDialogAdapter
 import com.userplay.bazar22.ui.viewmodels.GameTypeViewModel
 import com.userplay.bazar22.ui.viewmodels.SharedViewModels
@@ -34,10 +49,12 @@ import com.userplay.bazar22.utils.Constants.STARLINE_MARKET
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 import java.io.FileOutputStream
+import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import javax.inject.Inject
+import kotlin.toString
 
 @AndroidEntryPoint
 class SubmitGameDialogFragment : DialogFragment(R.layout.fragment_submit_game_dialog),
@@ -50,7 +67,8 @@ class SubmitGameDialogFragment : DialogFragment(R.layout.fragment_submit_game_di
     private val mGameTypeViewModel: GameTypeViewModel by viewModels()
     private val mArgs: SubmitGameDialogFragmentArgs by navArgs()
     private val mSharedViewModels: SharedViewModels by activityViewModels()
-
+    private var isAlreadyPrinting: Boolean = false
+    private var printerManager: PrinterManager? = null
     private val mGameSubmitDialogAdapter: GameSubmitDialogAdapter by lazy {
         GameSubmitDialogAdapter(
             mArgs.sendBody.games,
@@ -85,16 +103,19 @@ class SubmitGameDialogFragment : DialogFragment(R.layout.fragment_submit_game_di
             submit.setOnClickListener(this@SubmitGameDialogFragment)
             cancel.setOnClickListener(this@SubmitGameDialogFragment)
             tvDate.text = mArgs.gameName + " - " + currentDate()
+            tvSerialNumber.text = "S.No. ${mPref.getSerialNumber()}"
 
             when (mArgs.from) {
                 DESAWAR_MARKET, STARLINE_MARKET -> {
                     tvType.visibility = View.GONE
                 }
-                GENERAL_MARKET ->{
+
+                GENERAL_MARKET -> {
                     when (mArgs.gameType) {
                         true -> {
                             tvType.visibility = View.VISIBLE
                         }
+
                         false -> {
                             tvType.visibility = View.GONE
                         }
@@ -119,12 +140,16 @@ class SubmitGameDialogFragment : DialogFragment(R.layout.fragment_submit_game_di
                         if (response.data?.error != null) {
                             if (response.data.error) {
 
-
-                                val bundle = Bundle()
-                                val dialog = ErrorDialogFragment()
-                                bundle.putString("message", response.data.message.toString())
-                                dialog.arguments = bundle
-                                dialog.show(childFragmentManager, "error")
+                                if (Constants.showPrintViewDebug) {
+                                    //printDialogView()
+                                    startPrintActivity()
+                                } else {
+                                    val bundle = Bundle()
+                                    val dialog = ErrorDialogFragment()
+                                    bundle.putString("message", response.data.message.toString())
+                                    dialog.arguments = bundle
+                                    dialog.show(childFragmentManager, "error")
+                                }
 
                             } else {
                                 mSharedViewModels.setBalance(response.data.response?.balanceLeft.toString())
@@ -132,30 +157,35 @@ class SubmitGameDialogFragment : DialogFragment(R.layout.fragment_submit_game_di
                                 when (mArgs.from) {
 
                                     GENERAL_MARKET -> {
-                                        val dialog = BidSuccessDialogFragment()
+                                      /*  val dialog = BidSuccessDialogFragment()
                                         val bundle = Bundle()
                                         bundle.putString("from", GENERAL_MARKET)
                                         dialog.arguments = bundle
-                                        dialog.show(childFragmentManager, "OpenGame")
+                                        dialog.show(childFragmentManager, "OpenGame")*/
+                                       // printDialogView()
+                                        startPrintActivity()
                                     }
 
                                     STARLINE_MARKET -> {
 
-                                        val dialog = BidSuccessDialogFragment()
+                                      /*  val dialog = BidSuccessDialogFragment()
                                         val bundle = Bundle()
                                         bundle.putString("from", STARLINE_MARKET)
                                         dialog.arguments = bundle
-                                        dialog.show(childFragmentManager, "OpenGame")
+                                        dialog.show(childFragmentManager, "OpenGame")*/
+                                        //printDialogView()
+                                        startPrintActivity()
                                     }
 
                                     DESAWAR_MARKET -> {
 
-                                        val dialog = BidSuccessDialogFragment()
+                                       /* val dialog = BidSuccessDialogFragment()
                                         val bundle = Bundle()
                                         bundle.putString("from", DESAWAR_MARKET)
                                         dialog.arguments = bundle
-                                        dialog.show(childFragmentManager, "OpenGame")
-
+                                        dialog.show(childFragmentManager, "OpenGame")*/
+                                        //printDialogView()
+                                        startPrintActivity()
                                     }
 
                                 }
@@ -178,7 +208,52 @@ class SubmitGameDialogFragment : DialogFragment(R.layout.fragment_submit_game_di
             }
         }
     }
+    fun startPrintActivity() {
 
+        val items=  mArgs.sendBody.games.map {
+            val formattedNumber = it.number?.let { number ->
+                when {
+                    it.pattiType.contains("HSB") == true ->
+                        if (number.length > 3) number.substring(0, 3) + "x" + number.substring(3) else number
+                    it.pattiType.contains("HSA") == true ->
+                        if (number.length > 1) number.substring(0, 1) + "x" + number.substring(1) else number
+                    else ->
+                        if (number.length > 3) number.substring(0, 3) + "x" + number.substring(3) else number
+                }
+            }
+            BillItem(formattedNumber + it.pattiType, openClose = it.session.toString(), amount = it.amount?:0)
+        }
+        val fmt = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+        startActivity(
+            newIntent(
+                context = requireContext(),
+                heading = getString(com.userplay.bazar22.R.string.app_name),
+                headingSize = 32f,
+                subHeading =  mPref.getGameSubName(),
+                subHeadingSize = 26f,
+                title = mPref.getName(Constants.NAME).toString(),
+                subTitle = fmt.format(Date()),
+                srNumber = "S.No. ${mPref.getSerialNumber()}",
+                titleSize = 20f,
+                itemFontSize = 30f,
+                totalLabel = "TOTAL",
+                items = ArrayList(items),
+            )
+        )
+        val todayDate = SimpleDateFormat(
+            "yyyy-MM-dd",
+            Locale.getDefault()
+        ).format(Date())
+        val lastSerialDate = mPref.getSerialDate()
+        val newSerial: Int = if (lastSerialDate == todayDate) {
+            mPref.getSerialNumber() + 1
+        } else {
+            1
+        }
+
+        mPref.setSerialNumber(newSerial)
+        mPref.setSerialDate(todayDate)
+    }
 
     override fun onClick(v: View?) {
         mBinding.apply {
@@ -194,6 +269,7 @@ class SubmitGameDialogFragment : DialogFragment(R.layout.fragment_submit_game_di
                             // it.showToast(resources.getString(R.string.check_your_internet))
                         }
                     }
+
                     R.id.cancel -> {
                         dismiss()
                     }
@@ -205,7 +281,7 @@ class SubmitGameDialogFragment : DialogFragment(R.layout.fragment_submit_game_di
     override fun onStart() {
         super.onStart()
         val width = resources.getDimensionPixelSize(R.dimen.dialog_width)
-        dialog?.window?.setLayout(width, WindowManager.LayoutParams.WRAP_CONTENT)
+        dialog?.window?.setLayout(width, WRAP_CONTENT)
     }
 
 
@@ -218,71 +294,373 @@ class SubmitGameDialogFragment : DialogFragment(R.layout.fragment_submit_game_di
 
     override fun onDestroy() {
         super.onDestroy()
-        _binding = null
-    }
-
-    private fun printDialogView() {
-        // 1) inflate a fresh copy of the dialog layout
-        val printBinding = FragmentSubmitGameDialogBinding.inflate(layoutInflater).apply {
-            // copy over the data you want printed
-            tvTotalBids.text = mArgs.totalBids.toString()
-            tvTotalPoints.text = mArgs.totalPoints.toString()
-            tvDate.text = mBinding.tvDate.text
-            tvBalance.text = mBinding.tvBalance.text
-            afterBalance.text = mBinding.afterBalance.text
-
-            // set adapter so RecyclerView will measure its children
-            recyclerview.layoutManager = LinearLayoutManager(requireContext())
-            recyclerview.adapter = mGameSubmitDialogAdapter
-
-            // hide the on‑screen action buttons
-            submit.visibility = View.GONE
-            cancel.visibility = View.GONE
-            lyWalletDetails.visibility = View.GONE
+        try {
+            printerManager?.close()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        } finally {
+            printerManager = null
+            _binding = null
         }
 
-        // 2) wrap it in a container that adds margins + header + timestamp
-//        val marginPx = resources.getDimensionPixelSize(R.dimen.print_margin)
+    }
+
+    private fun getPrinterManager(): PrinterManager {
+        if (printerManager == null) {
+
+            val hasPrinter = try {
+                Class.forName("android.device.PrinterManager")
+                true
+            } catch (e: ClassNotFoundException) {
+                false
+            }
+            if (hasPrinter) {
+                printerManager = PrinterManager()
+                printerManager?.open()
+            } else {
+                Log.w("Printer", "Printer hardware not available on this device")
+            }
+        }
+        return printerManager!!
+    }
+
+    private fun printBitmap(bitmap: Bitmap) {
+        try {
+            val printer = getPrinterManager()
+
+            // Get Bitmap from drawable
+
+            // Check printer status
+            val status = printer.status
+            if (status == 0) { // PRNSTS_OK
+                printer.setupPage(384, -1) // Paper width 384px
+                printer.drawBitmap(bitmap, 30, 0)
+                printer.printPage(0)
+                printer.paperFeed(16) // Feed paper
+                Toast.makeText(requireContext(), "Printed Successfully", Toast.LENGTH_SHORT).show()
+                isAlreadyPrinting = false
+                shareToPrintingApps(bitmap)
+            } else {
+                Toast.makeText(requireContext(), "Printer Error: $status", Toast.LENGTH_SHORT)
+                    .show()
+                isAlreadyPrinting = false
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            isAlreadyPrinting = false
+            Toast.makeText(requireContext(), "Print failed: ${e.message}", Toast.LENGTH_SHORT)
+                .show()
+        }
+    }
+
+
+    private fun printDialogView() {
+        if (isAlreadyPrinting) return
+        isAlreadyPrinting = true
+
+        val inflater = LayoutInflater.from(requireContext())
+
+
+        // Container for items (acts as a full list)
+        val itemsContainer = LinearLayout(requireContext()).apply {
+            orientation = LinearLayout.VERTICAL
+            layoutParams = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                WRAP_CONTENT
+            )
+        }
+
+        // Inflate and bind every item in adapter
+        val adapter = mGameSubmitDialogAdapter
+        for (i in 0 until adapter.itemCount) {
+            val holder = adapter.onCreateViewHolder(itemsContainer, adapter.getItemViewType(i))
+            adapter.onBindViewHolder(holder, i)
+
+            val itemView = holder.itemView
+            // Measure item properly
+            itemView.measure(
+                View.MeasureSpec.makeMeasureSpec(
+                    Resources.getSystem().displayMetrics.widthPixels,
+                    View.MeasureSpec.EXACTLY
+                ),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+            )
+            itemView.layout(0, 0, itemView.measuredWidth, itemView.measuredHeight)
+            itemsContainer.addView(itemView)
+        }
+
+        // Add this new list to a clean scroll container to avoid overlap
+        val scrollView = ScrollView(requireContext()).apply {
+            layoutParams = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                WRAP_CONTENT
+            )
+            addView(itemsContainer)
+        }
+
+        // Main container (full print layout)
         val container = LinearLayout(requireContext()).apply {
             orientation = LinearLayout.VERTICAL
             setBackgroundColor(Color.WHITE)
-//            setPadding(marginPx, marginPx, marginPx, marginPx)
+            setPadding(20, 20, 20, 20)
+            layoutParams = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                WRAP_CONTENT
+            )
         }
 
-        // app name at top
+        // Header
         val titleView = TextView(requireContext()).apply {
             text = getString(R.string.app_name)
-            textSize = 20f
+            textSize = 26f
+            gravity = Gravity.CENTER
+            setTypeface(null, Typeface.BOLD)
+        }
+
+        // game name
+        val gameView = TextView(requireContext()).apply {
+            text = mPref.getGameSubName()
+            textSize = 22f
+            gravity = Gravity.CENTER
+            setTypeface(null, Typeface.BOLD)
+        }
+
+        val userView = TextView(requireContext()).apply {
+            text = mPref.getName(Constants.NAME).toString()
+            textSize = 26f
             gravity = Gravity.CENTER
         }
 
-        // current timestamp below
         val timeView = TextView(requireContext()).apply {
             val fmt = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
             text = fmt.format(Date())
-            textSize = 14f
+            textSize = 26f
             gravity = Gravity.CENTER
         }
 
-        // current timestamp below
-        val userView = TextView(requireContext()).apply {
-            text = mPref.getName(Constants.NAME).toString()
-            textSize = 18f
+
+        // 1️⃣ Date TextView
+        val tvDate = TextView(context).apply {
+            text = mBinding.tvDate.text
+            setBackgroundColor(Color.WHITE)
             gravity = Gravity.CENTER
+            setPadding(0, 10, 0, 10)
+            setTypeface(null, Typeface.BOLD)
+            setTextColor(Color.BLACK)
+            textSize = 26f
+            layoutParams = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                WRAP_CONTENT
+            )
         }
 
-        // assemble
+        // 2️⃣ Serial Number
+        val tvSerialNumber = TextView(context).apply {
+            text = "S.No. ${mPref.getSerialNumber()}"
+            gravity = Gravity.END
+            setTextColor(Color.BLACK)
+            setTypeface(null, Typeface.BOLD)
+            setPadding(5, 5, 5, 5)
+            layoutParams = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                WRAP_CONTENT
+            )
+        }
+
+        // 3️⃣ Headings Row
+        val llHeadings = LinearLayout(context).apply {
+            orientation = LinearLayout.HORIZONTAL
+            layoutParams = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                WRAP_CONTENT
+            ).apply {
+                setMargins(16, 6, 16, 0)
+            }
+        }
+
+        val headings = listOf("Digit", "Points")
+        headings.forEach { title ->
+            llHeadings.addView(TextView(context).apply {
+                text = title
+                textSize = 26f
+                gravity = Gravity.CENTER
+                setTextColor(Color.BLACK)
+                setTypeface(null, Typeface.BOLD)
+                layoutParams = LinearLayout.LayoutParams(
+                    0,
+                    WRAP_CONTENT,
+                    1f
+                )
+            })
+        }
+
+        // 4️⃣ Totals Layout
+        val llTotals = LinearLayout(context).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CLIP_VERTICAL
+            layoutParams = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                WRAP_CONTENT
+            ).apply {
+                setMargins(16, 8, 16, 5)
+            }
+        }
+
+        // Left column: Total Bids
+        val llLeft = LinearLayout(context).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CLIP_VERTICAL
+            setBackgroundColor("#F2F2F2".toColorInt())
+            layoutParams =
+                LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1f).apply {
+                    setPadding(5, 8, 5, 5)
+                }
+        }
+
+        val tvLabelBids = TextView(context).apply {
+            text = "Total Bids"
+            setTextColor(Color.BLACK)
+            textSize = 22f
+            layoutParams = LinearLayout.LayoutParams(0, WRAP_CONTENT, 1f)
+        }
+
+        val tvTotalBids = TextView(context).apply {
+            text = mArgs.totalBids.toString()
+            setTextColor(Color.BLACK)
+            setTypeface(null, Typeface.BOLD)
+            textSize = 26f
+            layoutParams = LinearLayout.LayoutParams(0, WRAP_CONTENT, 1f)
+        }
+
+        llLeft.addView(tvLabelBids)
+        llLeft.addView(tvTotalBids)
+
+        // Right column: Total Points
+        val llRight = LinearLayout(context).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER
+            setBackgroundColor("#F2F2F2".toColorInt())
+            layoutParams =
+                LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1f).apply {
+                    setPadding(5, 8, 5, 5)
+                }
+        }
+
+        val tvLabelPoints = TextView(context).apply {
+            text = "Total Amount"
+            setTextColor(Color.BLACK)
+            textSize = 22f
+            layoutParams = LinearLayout.LayoutParams(0, WRAP_CONTENT, 1f)
+        }
+
+        val tvTotalPoints = TextView(context).apply {
+            text = mArgs.totalPoints.toString()
+            setTextColor(Color.BLACK)
+            setTypeface(null, Typeface.BOLD)
+            textSize = 26f
+            gravity = Gravity.CENTER
+            layoutParams = LinearLayout.LayoutParams(0, WRAP_CONTENT, 1f)
+        }
+
+
+
+        val emptyView = TextView(context).apply {
+            text = ""
+            gravity = Gravity.CENTER
+            setTextColor(Color.BLACK)
+            textSize=30f
+            setPadding(10, 5, 5, 5)
+            layoutParams = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                WRAP_CONTENT
+            ).apply {
+                setPadding(5, 40, 5, 5)
+            }
+        }
+        val emptyView2 = TextView(context).apply {
+            text = "------------------------"
+            gravity = Gravity.CENTER
+            setTextColor(Color.BLACK)
+            textSize=30f
+            setPadding(10, 20, 5, 5)
+            layoutParams = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                WRAP_CONTENT
+            )
+        }
+
+        llRight.addView(tvLabelPoints)
+        llRight.addView(tvTotalPoints)
+
+        llTotals.addView(llLeft)
+        llTotals.addView(llRight)
+
+
+        container.addView(tvDate)
+        container.addView(tvSerialNumber)
         container.addView(titleView)
+        container.addView(gameView)
         container.addView(userView)
         container.addView(timeView)
-        container.addView(printBinding.root)
+        container.addView(llHeadings)
+        container.addView(scrollView)
+        container.addView(llTotals)
+        container.addView(emptyView)
+        container.addView(emptyView2)
 
-        // Add this:
-        increaseTextSize(container)
 
-        val bitmap = getBitmapFromView(container)
-        shareToPrintingApps(bitmap)
+        // Measure the entire layout
+        val displayWidth = Resources.getSystem().displayMetrics.widthPixels
+        container.measure(
+            View.MeasureSpec.makeMeasureSpec(displayWidth, View.MeasureSpec.EXACTLY),
+            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+        )
+        container.layout(0, 0, container.measuredWidth, container.measuredHeight)
+
+        // Convert to bitmap
+        val bitmap = Bitmap.createBitmap(
+            container.measuredWidth,
+            container.measuredHeight,
+            Bitmap.Config.ARGB_8888
+        )
+        val canvas = Canvas(bitmap)
+        container.draw(canvas)
+
+        // Show the bitmap in a preview dialog (for testing without printer)
+        if (Constants.showPrintViewDebug) {
+            val uri = saveBitmapToCache(requireContext(), bitmap)
+            if (uri != null) {
+                shareBitmap(requireContext(), uri)
+                isAlreadyPrinting = false
+            } else {
+                Log.e("getUrl", "null")
+            }
+        } else {
+            printBitmap(bitmap)
+        }
+
+
+        val todayDate = SimpleDateFormat(
+            "yyyy-MM-dd",
+            Locale.getDefault()
+        ).format(Date())
+        val lastSerialDate = mPref.getSerialDate()
+        val newSerial: Int = if (lastSerialDate == todayDate) {
+            mPref.getSerialNumber() + 1
+        } else {
+            1
+        }
+
+        mPref.setSerialNumber(newSerial)
+        mPref.setSerialDate(todayDate)
+        mBinding.tvSerialNumber.text = "S.No. $newSerial"
+
     }
+
+
+
+
+
 
     private fun increaseTextSize(view: View, scaleFactor: Float = 1.2f) {
         if (view is ViewGroup) {
@@ -290,7 +668,8 @@ class SubmitGameDialogFragment : DialogFragment(R.layout.fragment_submit_game_di
                 increaseTextSize(view.getChildAt(i), scaleFactor)
             }
         } else if (view is TextView) {
-            view.textSize = view.textSize / view.resources.displayMetrics.scaledDensity * scaleFactor
+            view.textSize =
+                view.textSize / view.resources.displayMetrics.scaledDensity * scaleFactor
         }
     }
 
@@ -322,7 +701,8 @@ class SubmitGameDialogFragment : DialogFragment(R.layout.fragment_submit_game_di
         // Filter to only apps likely to be printing apps
         val targetedIntents = resInfoList.mapNotNull { resolveInfo ->
             val pkgName = resolveInfo.activityInfo.packageName
-            val appName = resolveInfo.loadLabel(requireContext().packageManager).toString().lowercase()
+            val appName =
+                resolveInfo.loadLabel(requireContext().packageManager).toString().lowercase()
 
             if ("print" in pkgName.lowercase() || "print" in appName) {
                 Intent(intent).apply {
@@ -337,11 +717,13 @@ class SubmitGameDialogFragment : DialogFragment(R.layout.fragment_submit_game_di
             startActivity(Intent.createChooser(intent, "Share to Printer"))
         } else {
             val chooserIntent = Intent.createChooser(targetedIntents[0], "Print Submission Slip")
-            chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, targetedIntents.drop(1).toTypedArray())
+            chooserIntent.putExtra(
+                Intent.EXTRA_INITIAL_INTENTS,
+                targetedIntents.drop(1).toTypedArray()
+            )
             startActivity(chooserIntent)
         }
     }
-
 
     private fun getBitmapFromView(view: View): Bitmap {
         // compute printable width (screen width minus left+right margins)
@@ -363,6 +745,7 @@ class SubmitGameDialogFragment : DialogFragment(R.layout.fragment_submit_game_di
         view.draw(canvas)
         return bitmap
     }
+
 
     //    private fun shareBitmap(bitmap: Bitmap) {
 //        try {
@@ -458,4 +841,52 @@ class SubmitGameDialogFragment : DialogFragment(R.layout.fragment_submit_game_di
 //    }
 
 
+}
+
+
+fun saveBitmapToCache(context: Context, bitmap: Bitmap): Uri? {
+    return try {
+        val cacheDir = context.cacheDir
+        if (!cacheDir.exists()) {
+            cacheDir.mkdirs()
+        }
+        val file = File(cacheDir, "receipt_${System.currentTimeMillis()}.png").apply {
+            outputStream().use { outputStream ->
+                if (!bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)) {
+                    throw IOException("Failed to compress bitmap")
+                }
+            }
+        }
+        if (!file.exists()) {
+            throw IOException("File creation failed")
+        }
+        val uri = FileProvider.getUriForFile(
+            context,
+            "${context.packageName}.provider", // Ensure this matches your manifest
+            file
+        )
+        Log.d("FilePath", "File created at: ${file.absolutePath}")
+        Log.d("FileUri", "Uri: $uri")
+        uri
+    } catch (e: Exception) {
+        e.printStackTrace()
+        null
+    }
+}
+
+fun shareBitmap(context: Context, uri: Uri) {
+    val shareIntent = Intent(Intent.ACTION_SEND).apply {
+        type = "image/png"
+        putExtra(Intent.EXTRA_STREAM, uri)
+        addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+    }
+    val chooser = Intent.createChooser(shareIntent, "Share Receipt").apply {
+        // Prevent multiple chooser activities
+        addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+    }
+    try {
+        context.startActivity(chooser)
+    } catch (e: Exception) {
+        Toast.makeText(context, "Unable to share receipt: ${e.message}", Toast.LENGTH_LONG).show()
+    }
 }

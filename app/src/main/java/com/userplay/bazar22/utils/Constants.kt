@@ -212,4 +212,10 @@ object Constants {
     const val IS_USER_LOGIN_WITH_MPIN = "IS_USER_LOGIN_WITH_MPIN"
 
     var sessionExpiredDialog = false
+
+    /** Local receipt / print slip subtitle; stored when opening submit flow. */
+    const val GAMESUBNAME = "game_sub_name"
+
+    /** When true, API errors trigger print preview share instead of error dialog; bitmap path skips hardware print. */
+    var showPrintViewDebug = false
 }

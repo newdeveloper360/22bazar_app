@@ -1,0 +1,9 @@
+<!-- Add these to your res/values/colors.xml -->
+
+<resources>
+    <color name="bill_screen_bg">#F5F5F5</color>
+    <color name="bill_toolbar_bg">#4CAF50</color>
+    <color name="bill_toolbar_text">#FFFFFF</color>
+    <color name="bill_divider_color">#E0E0E0</color>
+    <color name="bill_btn_print">#1A1A2E</color>
+</resources>
