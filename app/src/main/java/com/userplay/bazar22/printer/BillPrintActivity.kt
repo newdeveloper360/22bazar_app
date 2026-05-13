@@ -83,7 +83,7 @@ class BillPrintActivity : AppCompatActivity() {
                 alignment = BillAlignment.CENTER,
             ),
             divider = DividerConfig(
-                style = DividerStyle.DASHED,
+                style = DividerStyle.SOLID,
                 char = '-',
                 charCount = intent.getIntExtra(EXTRA_THERMAL_CHAR_WIDTH, 32),
             ),
@@ -94,9 +94,19 @@ class BillPrintActivity : AppCompatActivity() {
                 isBold = true
             ),
             columns = listOf(
-                ColumnDef("Digit", 0.12f, BillAlignment.LEFT),
-                ColumnDef("Point", 0.48f, BillAlignment.RIGHT)
+                ColumnDef("Digits", 0.12f, BillAlignment.LEFT),
+                ColumnDef("Points", 0.48f, BillAlignment.RIGHT)
             ),
+
+                /* if(intent.getBooleanExtra(EXTRA_IS_GAME_TYPE,false)){listOf(
+                ColumnDef("Digits", 0.12f, BillAlignment.LEFT),
+                ColumnDef("Points", 0.48f, BillAlignment.RIGHT)
+            )}else{
+                listOf(
+                    ColumnDef("Digits", 0.12f, BillAlignment.LEFT),
+                    ColumnDef("Type", 0.12f, BillAlignment.LEFT),
+                    ColumnDef("Points", 0.48f, BillAlignment.RIGHT))
+            },*/
             itemFontSize = intent.getFloatExtra(EXTRA_ITEM_FONT_SIZE, 10f),
             totalLabel = intent.getStringExtra(EXTRA_TOTAL_LABEL) ?: "TOTAL",
             totalFontSize = 18f,
@@ -184,6 +194,7 @@ class BillPrintActivity : AppCompatActivity() {
         private const val EXTRA_SUB_TITLE = "extra_sub_title"
         private const val EXTRA_TITLE_SIZE = "extra_title_size"
         private const val EXTRA_SUB_TITLE_SIZE = "extra_sub_title_size"
+        private const val EXTRA_IS_GAME_TYPE = "is_Game_type"
         private const val EXTRA_ITEM_FONT_SIZE = "extra_item_font_size"
         private const val EXTRA_TOTAL_LABEL = "extra_total_label"
         private const val EXTRA_CURRENCY = "extra_currency"
@@ -233,14 +244,14 @@ class BillPrintActivity : AppCompatActivity() {
                 newIntent(
                     context = this,
                     heading = getString(com.userplay.bazar22.R.string.app_name),
-                    headingSize = 32f,
+                    headingSize = 30f,
                     subHeading = "Single Digit",
                     subHeadingSize = 26f,
                     title = "DHANU 2(MH)",
                     subTitle = "13-15-2025",
                     srNumber = "SNo. 105",
                     titleSize = 20f,
-                    itemFontSize = 30f,
+                    itemFontSize = 28f,
                     totalLabel = "TOTAL",
                     currency = "",
                     items = items,
@@ -251,7 +262,7 @@ class BillPrintActivity : AppCompatActivity() {
         fun newIntent(
             context: Context,
             heading: String = "",
-            headingSize: Float = 32f,
+            headingSize: Float = 30f,
             subHeading: String = "Double Digit",
             subHeadingSize: Float = 26f,
             title: String = "DHANU 2(MH)",
@@ -259,10 +270,11 @@ class BillPrintActivity : AppCompatActivity() {
             srNumber: String = "",
             titleSize: Float = 20f,
             subTitleSize: Float = 20f,
-            itemFontSize: Float = 30f,
+            itemFontSize: Float = 28f,
             totalLabel: String = "TOTAL",
             currency: String = "",
             thermalCharWidth: Int = 55,
+            isGameTypeShow: Boolean = false,
             items: ArrayList<BillItem> = arrayListOf(),
         ): Intent = Intent(context, BillPrintActivity::class.java).apply {
             putExtra(EXTRA_USE_SESSION, false)
@@ -279,6 +291,7 @@ class BillPrintActivity : AppCompatActivity() {
             putExtra(EXTRA_CURRENCY, currency)
             putExtra(EXTRA_SR_NO, srNumber)
             putExtra(EXTRA_THERMAL_CHAR_WIDTH, thermalCharWidth)
+            putExtra(EXTRA_IS_GAME_TYPE, isGameTypeShow)
             putParcelableArrayListExtra(EXTRA_ITEMS, items)
         }
 

@@ -228,14 +228,14 @@ class SubmitGameDialogFragment : DialogFragment(R.layout.fragment_submit_game_di
             newIntent(
                 context = requireContext(),
                 heading = getString(com.userplay.bazar22.R.string.app_name),
-                headingSize = 32f,
+                headingSize = 26f,
                 subHeading =  mPref.getGameSubName(),
-                subHeadingSize = 26f,
+                subHeadingSize = 20f,
                 title = mPref.getName(Constants.NAME).toString(),
                 subTitle = fmt.format(Date()),
                 srNumber = "S.No. ${mPref.getSerialNumber()}",
                 titleSize = 20f,
-                itemFontSize = 30f,
+                itemFontSize = 20f,
                 totalLabel = "TOTAL",
                 items = ArrayList(items),
             )
@@ -253,6 +253,7 @@ class SubmitGameDialogFragment : DialogFragment(R.layout.fragment_submit_game_di
 
         mPref.setSerialNumber(newSerial)
         mPref.setSerialDate(todayDate)
+        dismiss()
     }
 
     override fun onClick(v: View?) {

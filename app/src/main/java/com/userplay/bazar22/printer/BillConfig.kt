@@ -103,20 +103,19 @@ data class BillConfig(
 
     // ── Table columns ────────────────────────────────────────────────────────
     val columns: List<ColumnDef> = listOf(
-        ColumnDef("ID",   0.15f, BillAlignment.LEFT),
-        ColumnDef("Item", 0.50f, BillAlignment.LEFT),
-        ColumnDef("Qty",  0.10f, BillAlignment.CENTER),
-        ColumnDef("Amt",  0.25f, BillAlignment.RIGHT),
+        ColumnDef("Digits",   0.15f, BillAlignment.LEFT),
+        ColumnDef("Points",  0.25f, BillAlignment.RIGHT),
     ),
 
     // ── Item text size ────────────────────────────────────────────────────────
     val itemFontSize: Float = 10f,
+    val itemHeadingSize: Float = 16f,
 
 
     // ── Total row ─────────────────────────────────────────────────────────────
     val totalLabel: String = "TOTAL",
     val totalFontSize: Float = 12f,
-    val currency: String = "PKR",
+    val currency: String = "",
 
     // ── Paper width (chars) for thermal — drives dashed divider width ─────────
     val thermalCharWidth: Int = 32,

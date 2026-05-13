@@ -2,18 +2,17 @@ package com.userplay.bazar22.ui.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View.GONE
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.userplay.bazar22.BuildConfig
 import com.userplay.bazar22.databinding.ActivitySplashBinding
 import com.userplay.bazar22.network.ApiState
 import com.userplay.bazar22.network.CheckNetwork.Companion.isNetworkConnected
 import com.userplay.bazar22.preferences.MatkaPref
-import com.userplay.bazar22.printer.BillPrintActivity.Companion.startPrintActivity
 import com.userplay.bazar22.ui.dialogs.BlockDialogFragment
 import com.userplay.bazar22.ui.dialogs.InternetErrorDialogFragment
 import com.userplay.bazar22.ui.dialogs.UpdateDialogeFragment

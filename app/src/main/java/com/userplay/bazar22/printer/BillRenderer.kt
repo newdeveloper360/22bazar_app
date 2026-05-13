@@ -174,7 +174,7 @@ object BillRenderer {
 
             val cell = TextView(context).apply {
                 text = cellText
-                textSize = if (isHeader) config.itemFontSize + 1f else config.itemFontSize
+                textSize = if (isHeader) config.itemHeadingSize else config.itemFontSize
                 typeface = if (isHeader) Typeface.DEFAULT_BOLD else Typeface.MONOSPACE
                 textAlignment = col.alignment.toTextAlignment()
                 gravity = col.alignment.toLayoutGravity()
