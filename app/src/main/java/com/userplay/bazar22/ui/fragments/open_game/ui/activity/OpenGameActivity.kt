@@ -69,16 +69,19 @@ class OpenGameActivity : AppCompatActivity(), View.OnClickListener,NavController
         mBinding.apply {
             when (v?.id) {
                 R.id.jantari -> {
+                    mPref.setGameSubName("Jantri")
                     mNavController.navigateUp() // to clear previous navigation history
                     mNavController.navigate(R.id.jantriFragment,mBundle)
                 }
 
                 R.id.crossing -> {
+                    mPref.setGameSubName("Crossing Number")
                     mNavController.navigateUp() // to clear previous navigation history
                     mNavController.navigate(R.id.crossingNumberFragment,mBundle)
                 }
 
                 R.id.no_to_no -> {
+                    mPref.setGameSubName("No To No")
                     mNavController.navigateUp() // to clear previous navigation history
                     mNavController.navigate(R.id.noToNoFragment,mBundle)
                 }

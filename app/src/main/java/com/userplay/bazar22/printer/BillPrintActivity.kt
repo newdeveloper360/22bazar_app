@@ -94,7 +94,7 @@ class BillPrintActivity : AppCompatActivity() {
                 isBold = true
             ),
             columns = listOf(
-                ColumnDef("Digits", 0.12f, BillAlignment.LEFT),
+                ColumnDef("Digits", 0.20f, BillAlignment.LEFT),
                 ColumnDef("Points", 0.48f, BillAlignment.RIGHT)
             ),
 

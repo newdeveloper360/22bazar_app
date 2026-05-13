@@ -104,7 +104,6 @@ class SubmitGameDialogFragment : DialogFragment(R.layout.fragment_submit_game_di
             cancel.setOnClickListener(this@SubmitGameDialogFragment)
             tvDate.text = mArgs.gameName + " - " + currentDate()
             tvSerialNumber.text = "S.No. ${mPref.getSerialNumber()}"
-
             when (mArgs.from) {
                 DESAWAR_MARKET, STARLINE_MARKET -> {
                     tvType.visibility = View.GONE
@@ -209,7 +208,8 @@ class SubmitGameDialogFragment : DialogFragment(R.layout.fragment_submit_game_di
         }
     }
     fun startPrintActivity() {
-
+        val fmt = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+        var formattedDate=fmt.format(Date())
         val items=  mArgs.sendBody.games.map {
             val formattedNumber = it.number?.let { number ->
                 when {
@@ -223,7 +223,7 @@ class SubmitGameDialogFragment : DialogFragment(R.layout.fragment_submit_game_di
             }
             BillItem(formattedNumber + it.pattiType, openClose = it.session.toString(), amount = it.amount?:0)
         }
-        val fmt = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+
         startActivity(
             newIntent(
                 context = requireContext(),
@@ -232,7 +232,7 @@ class SubmitGameDialogFragment : DialogFragment(R.layout.fragment_submit_game_di
                 subHeading =  mPref.getGameSubName(),
                 subHeadingSize = 20f,
                 title = mPref.getName(Constants.NAME).toString(),
-                subTitle = fmt.format(Date()),
+                subTitle = formattedDate?:currentDate(),
                 srNumber = "S.No. ${mPref.getSerialNumber()}",
                 titleSize = 20f,
                 itemFontSize = 20f,
