@@ -170,6 +170,7 @@ class SelectGameFragment : Fragment(R.layout.fragment_select_game_new), View.OnC
 
     fun navigateToGame(item:SelectGameModel){
         mPref.setGameSubName(item.name)
+        mPref.setMarketName(mGameName)
         when(item.name){
 
             "Single Digits" -> {

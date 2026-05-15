@@ -97,6 +97,12 @@ data class BillConfig(
         fontSize    = 14f,
         alignment   = BillAlignment.CENTER,
     ),
+    // ── sub Title / meta row (date, bill no, etc.) ───────────────────────────────
+    val label: TextConfig = TextConfig(
+        text        = "",
+        fontSize    = 14f,
+        alignment   = BillAlignment.CENTER,
+    ),
 
     // ── Divider between sections ─────────────────────────────────────────────
     val divider: DividerConfig = DividerConfig(),

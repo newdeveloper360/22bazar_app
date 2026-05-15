@@ -233,6 +233,7 @@ class SubmitGameDialogFragment : DialogFragment(R.layout.fragment_submit_game_di
                 subHeadingSize = 20f,
                 title = mPref.getName(Constants.NAME).toString(),
                 subTitle = formattedDate?:currentDate(),
+                label = mPref.getMarketName(),
                 srNumber = "S.No. ${mPref.getSerialNumber()}",
                 titleSize = 20f,
                 itemFontSize = 20f,

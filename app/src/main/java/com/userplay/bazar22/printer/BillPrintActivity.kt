@@ -1,5 +1,6 @@
 package com.userplay.bazar22.printer
 
+import android.R.attr.label
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -80,6 +81,11 @@ class BillPrintActivity : AppCompatActivity() {
             subTitle = TextConfig(
                 text = intent.getStringExtra(EXTRA_SUB_TITLE) ?: "Date: --",
                 fontSize = intent.getFloatExtra(EXTRA_SUB_TITLE_SIZE, 16f),
+                alignment = BillAlignment.CENTER,
+            ),
+            label = TextConfig(
+                text = intent.getStringExtra(EXTRA_LABEL) ?: "Date: --",
+                fontSize = intent.getFloatExtra(EXTRA_LABEL_SIZE, 14f),
                 alignment = BillAlignment.CENTER,
             ),
             divider = DividerConfig(
@@ -192,8 +198,10 @@ class BillPrintActivity : AppCompatActivity() {
         private const val EXTRA_SUB_HEADING_SIZE = "extra_sub_heading_size"
         private const val EXTRA_TITLE = "extra_title"
         private const val EXTRA_SUB_TITLE = "extra_sub_title"
+        private const val EXTRA_LABEL = "extra_label"
         private const val EXTRA_TITLE_SIZE = "extra_title_size"
         private const val EXTRA_SUB_TITLE_SIZE = "extra_sub_title_size"
+        private const val EXTRA_LABEL_SIZE = "extra_label_size"
         private const val EXTRA_IS_GAME_TYPE = "is_Game_type"
         private const val EXTRA_ITEM_FONT_SIZE = "extra_item_font_size"
         private const val EXTRA_TOTAL_LABEL = "extra_total_label"
@@ -250,6 +258,7 @@ class BillPrintActivity : AppCompatActivity() {
                     title = "DHANU 2(MH)",
                     subTitle = "13-15-2025",
                     srNumber = "SNo. 105",
+                    label = "GAME NAME",
                     titleSize = 20f,
                     itemFontSize = 28f,
                     totalLabel = "TOTAL",
@@ -267,6 +276,7 @@ class BillPrintActivity : AppCompatActivity() {
             subHeadingSize: Float = 26f,
             title: String = "DHANU 2(MH)",
             subTitle: String = "",
+            label: String = "",
             srNumber: String = "",
             titleSize: Float = 20f,
             subTitleSize: Float = 20f,
@@ -284,6 +294,7 @@ class BillPrintActivity : AppCompatActivity() {
             putExtra(EXTRA_SUB_HEADING_SIZE, subHeadingSize)
             putExtra(EXTRA_TITLE, title)
             putExtra(EXTRA_SUB_TITLE, subTitle)
+            putExtra(EXTRA_LABEL, label)
             putExtra(EXTRA_TITLE_SIZE, titleSize)
             putExtra(EXTRA_SUB_TITLE_SIZE, subTitleSize)
             putExtra(EXTRA_ITEM_FONT_SIZE, itemFontSize)

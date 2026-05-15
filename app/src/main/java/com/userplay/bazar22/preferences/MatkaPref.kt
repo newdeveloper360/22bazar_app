@@ -26,6 +26,7 @@ import com.userplay.bazar22.utils.Constants.INVITE_BONUS
 import com.userplay.bazar22.utils.Constants.INVITE_SYSTEM_ENABLE
 import com.userplay.bazar22.utils.Constants.IS_USER_LOGIN
 import com.userplay.bazar22.utils.Constants.MAINTAIN_MODE
+import com.userplay.bazar22.utils.Constants.MARKETNAME
 import com.userplay.bazar22.utils.Constants.MIN_BID
 import com.userplay.bazar22.utils.Constants.MIN_DEPOSIT
 import com.userplay.bazar22.utils.Constants.MIN_WITHDRAW
@@ -596,6 +597,14 @@ class MatkaPref @Inject constructor(@ApplicationContext context: Context) {
         return preference.getString("serial_number_date", null)
     }
 
+
+    fun setMarketName(name: String?) {
+        editor.putString(MARKETNAME, name).apply()
+    }
+
+    fun getMarketName(): String {
+        return preference.getString(MARKETNAME, "") ?: ""
+    }
     fun setGameSubName(name: String?) {
         editor.putString(GAMESUBNAME, name).apply()
     }

@@ -37,6 +37,9 @@ object BillRenderer {
         }
 
         root.addView(textView(context, config.heading))
+        if(config.label.text.isNotEmpty()){
+            root.addView(textView(context, config.label))
+        }
         root.addView(textView(context, config.srNo))
         root.addView(textView(context, config.subHeading))
         root.addView(textView(context, config.title))
