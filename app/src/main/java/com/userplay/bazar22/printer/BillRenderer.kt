@@ -26,6 +26,7 @@ object BillRenderer {
         context: Context,
         config: BillConfig,
         items: List<BillItem>,
+        isGameTypeShow: Boolean = false
     ): LinearLayout {
         val root = LinearLayout(context).apply {
             orientation = LinearLayout.VERTICAL
@@ -36,7 +37,9 @@ object BillRenderer {
             setPadding(h, v, h, v)
         }
 
-        root.addView(textView(context, config.heading))
+        if(config.heading.text.isNotBlank()){
+            root.addView(textView(context, config.heading))
+        }
         if(config.label.text.isNotEmpty()){
             root.addView(textView(context, config.label))
         }
@@ -45,7 +48,7 @@ object BillRenderer {
         root.addView(textView(context, config.title))
         root.addView(textView(context, config.subTitle))
         root.addView(dividerView(context, config))
-        root.addView(buildTable(context, config, items))
+        root.addView(buildTable(context, config, items,isGameTypeShow=isGameTypeShow))
         root.addView(dividerView(context, config))
         root.addView(buildTotalRow(context, config, items))
         root.addView(dividerView(context, config))
@@ -122,16 +125,17 @@ object BillRenderer {
         context: Context,
         config: BillConfig,
         items: List<BillItem>,
+        isGameTypeShow: Boolean = false
     ): TableLayout {
         val table = TableLayout(context).apply {
             layoutParams = LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT)
             isStretchAllColumns = true
         }
 
-        table.addView(buildRow(context, config, isHeader = true, item = null))
+        table.addView(buildRow(context, config, isHeader = true, item = null,isGameTypeShow=isGameTypeShow))
 
         items.forEach { item ->
-            table.addView(buildRow(context, config, isHeader = false, item = item))
+            table.addView(buildRow(context, config, isHeader = false, item = item,isGameTypeShow=isGameTypeShow))
         }
 
         return table
@@ -142,6 +146,7 @@ object BillRenderer {
         config: BillConfig,
         isHeader: Boolean,
         item: BillItem?,
+        isGameTypeShow:Boolean = false
     ): TableRow {
         val row = TableRow(context).apply {
             layoutParams = TableLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT)
@@ -159,10 +164,19 @@ object BillRenderer {
                     item.customRow
                 }
                 else -> {
-                    val base = listOf(
-                        item.name,
-                        item.amount.toString(),
-                    )
+                    val base=   if(isGameTypeShow){
+                        listOf(
+                            item.name,
+                            item.openClose,
+                            item.amount.toString(),
+                        )
+                    }else{
+                         listOf(
+                            item.name,
+                            item.amount.toString(),
+                        )
+                    }
+
                     base.take(colCount)
                 }
             }
@@ -177,7 +191,7 @@ object BillRenderer {
 
             val cell = TextView(context).apply {
                 text = cellText
-                textSize = if (isHeader) config.itemHeadingSize else config.itemFontSize
+                textSize = if (isHeader) config.itemHeadingSize else if(cellText.lowercase()=="open" || cellText.lowercase()=="close") config.itemFontSize-2f else config.itemFontSize
                 typeface = if (isHeader) Typeface.DEFAULT_BOLD else Typeface.MONOSPACE
                 textAlignment = col.alignment.toTextAlignment()
                 gravity = col.alignment.toLayoutGravity()

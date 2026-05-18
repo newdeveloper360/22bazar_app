@@ -23,6 +23,7 @@ class BillPrintDocumentAdapter(
     private val context: Context,
     private val config: BillConfig,
     private val items: List<BillItem>,
+    private val isGameTypeShow: Boolean = false
 ) : PrintDocumentAdapter() {
 
     private var pdfDocument: PrintedPdfDocument? = null
@@ -51,7 +52,7 @@ class BillPrintDocumentAdapter(
         layoutPageWidthPx = pw
         layoutPageHeightPx = ph
 
-        val billView = BillRenderer.buildView(context, config, items)
+        val billView = BillRenderer.buildView(context, config, items,isGameTypeShow=isGameTypeShow)
         val widthSpec = View.MeasureSpec.makeMeasureSpec(pw, View.MeasureSpec.EXACTLY)
         val heightSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
         billView.measure(widthSpec, heightSpec)
@@ -85,7 +86,7 @@ class BillPrintDocumentAdapter(
             return
         }
 
-        val billView = BillRenderer.buildView(context, config, items)
+        val billView = BillRenderer.buildView(context, config, items,isGameTypeShow=isGameTypeShow)
         val widthSpec = View.MeasureSpec.makeMeasureSpec(layoutPageWidthPx, View.MeasureSpec.EXACTLY)
         val heightSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
         billView.measure(widthSpec, heightSpec)

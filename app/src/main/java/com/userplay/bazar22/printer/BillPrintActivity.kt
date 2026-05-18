@@ -1,11 +1,9 @@
 package com.userplay.bazar22.printer
 
-import android.R.attr.label
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import android.icu.number.Precision.currency
 import android.os.Build
 import android.os.Bundle
 import android.print.PrintAttributes
@@ -42,10 +40,13 @@ class BillPrintActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.toolbar.setNavigationOnClickListener { finish() }
 
-        billView = BillRenderer.buildView(this, billConfig, billItems)
+        billView = BillRenderer.buildView(this, billConfig, billItems, isGameTypeShow = intent.getBooleanExtra(EXTRA_IS_GAME_TYPE,false))
         binding.billPreviewContainer.addView(billView)
 
-        binding.btnPrint.setOnClickListener { printBill() }
+        binding.btnPrint.setOnClickListener {
+            val isGameTypeShow= intent.getBooleanExtra(EXTRA_IS_GAME_TYPE,false)
+            printBill(isGameTypeShow)
+        }
         binding.btnShare.setOnClickListener { shareBill() }
     }
 
@@ -99,20 +100,21 @@ class BillPrintActivity : AppCompatActivity() {
                 alignment = BillAlignment.RIGHT,
                 isBold = true
             ),
-            columns = listOf(
+            /*columns = listOf(
                 ColumnDef("Digits", 0.20f, BillAlignment.LEFT),
                 ColumnDef("Points", 0.48f, BillAlignment.RIGHT)
-            ),
+            ),*/
 
-                /* if(intent.getBooleanExtra(EXTRA_IS_GAME_TYPE,false)){listOf(
-                ColumnDef("Digits", 0.12f, BillAlignment.LEFT),
-                ColumnDef("Points", 0.48f, BillAlignment.RIGHT)
-            )}else{
+            columns =  if(intent.getBooleanExtra(EXTRA_IS_GAME_TYPE,false)){
                 listOf(
-                    ColumnDef("Digits", 0.12f, BillAlignment.LEFT),
-                    ColumnDef("Type", 0.12f, BillAlignment.LEFT),
+                    ColumnDef("Digit", 0.33f, BillAlignment.LEFT),
+                    ColumnDef("Type", 0.33f, BillAlignment.CENTER),
+                    ColumnDef("Point", 0.33f, BillAlignment.RIGHT))
+             }else{
+                listOf(
+                    ColumnDef("Digits", 0.20f, BillAlignment.LEFT),
                     ColumnDef("Points", 0.48f, BillAlignment.RIGHT))
-            },*/
+            },
             itemFontSize = intent.getFloatExtra(EXTRA_ITEM_FONT_SIZE, 10f),
             totalLabel = intent.getStringExtra(EXTRA_TOTAL_LABEL) ?: "TOTAL",
             totalFontSize = 18f,
@@ -130,7 +132,8 @@ class BillPrintActivity : AppCompatActivity() {
         } ?: sampleItems()
     }
 
-    private fun printBill() {
+    private fun printBill(isGameTypeShow: Boolean) {
+
         val printManager = getSystemService(PRINT_SERVICE) as PrintManager
 
         val printAttributes = PrintAttributes.Builder()
@@ -142,8 +145,8 @@ class BillPrintActivity : AppCompatActivity() {
             .build()
 
         printManager.print(
-            billConfig.heading.text,
-            BillPrintDocumentAdapter(this, billConfig, billItems),
+            getString(com.userplay.bazar22.R.string.app_name),
+            BillPrintDocumentAdapter(this, billConfig, billItems,isGameTypeShow=isGameTypeShow),
             printAttributes,
         )
     }

@@ -221,23 +221,22 @@ class SubmitGameDialogFragment : DialogFragment(R.layout.fragment_submit_game_di
                         if (number.length > 3) number.substring(0, 3) + "x" + number.substring(3) else number
                 }
             }
-            BillItem(formattedNumber + it.pattiType, openClose = it.session.toString(), amount = it.amount?:0)
+            BillItem(formattedNumber + it.pattiType, openClose = if(it.session == "null") "" else it.session?:"", amount = it.amount?:0)
         }
 
         startActivity(
             newIntent(
                 context = requireContext(),
-                heading = getString(com.userplay.bazar22.R.string.app_name),
-                headingSize = 26f,
                 subHeading =  mPref.getGameSubName(),
                 subHeadingSize = 20f,
                 title = mPref.getName(Constants.NAME).toString(),
                 subTitle = formattedDate?:currentDate(),
                 label = mPref.getMarketName(),
                 srNumber = "S.No. ${mPref.getSerialNumber()}",
-                titleSize = 20f,
-                itemFontSize = 20f,
+                titleSize = 18f,
+                itemFontSize = 18f,
                 totalLabel = "TOTAL",
+                isGameTypeShow =  if(items.isNotEmpty() && items[0].openClose.isNotEmpty()) true else false,
                 items = ArrayList(items),
             )
         )

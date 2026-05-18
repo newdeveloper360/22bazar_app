@@ -65,7 +65,7 @@ data class BillConfig(
 
     // ── Heading ─────────────────────────────────────────────────────────────
     val heading: TextConfig = TextConfig(
-        text        = "INVENTORY BILL",
+        text        = "",
         fontSize    = 16f,
         alignment   = BillAlignment.CENTER,
         isBold      = true,
